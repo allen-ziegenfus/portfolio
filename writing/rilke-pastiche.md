@@ -11,7 +11,7 @@ The original Rilke is about how categorical naming (*"this is called dog and tha
 Ich fürchte mich so vor des Reviewers Wort.  
 Er ordnet die Token so deutlich aus:  
 ein jedes Komma gehört in sein Haus,  
-und hier ist Anfang und das Ende ist dort.
+und hier ist der Tab und das Leerzeichen dort.
 
 Mich bangt auch ihr Werk, ihr Spiel mit dem Spott,  
 sie wissen alles, wie's gewesen war;  
@@ -19,7 +19,7 @@ kein Code ist ihnen mehr wunderbar;
 ihr Format und Stil grenzt grade an Gott.
 
 Ich will immer warnen und wehren: bleibt fern.  
-Den Code, der atmet, hör ich so gern.  
+Den Code, der läuft, seh ich so gern.  
 Ihr rührt ihn an: er wird starr und stumm.  
 Ihr bringt mir alle Funktionen um.
 
