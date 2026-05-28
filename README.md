@@ -8,6 +8,13 @@ Cloud-native / Kubernetes / SRE / platform engineering work samples and writing.
 
 ## Architecture decisions
 
+- **PostgreSQL ownership-via-`cloudsqlsuperuser` for cross-environment Cloud SQL restore.** Pattern for handling table ownership drift during cross-environment database restores. When a backup is restored from environment A into environment B, IAM-based DB authentication breaks because table ownership still references environment A's per-environment service account. The fix: have all tables (including dynamically created ones) owned by the `cloudsqlsuperuser` role at creation time, so ownership stays valid across environments and the postgres root password no longer has to be reset after every cross-env restore.
+  Commits & PR (public, on `cloudnative-team/liferay-portal`):
+    - Earlier groundwork: [LCD-36761 — Make sure all PostgreSQL tables are owned by cloudsqlsuperuser](https://github.com/cloudnative-team/liferay-portal/commit/ebad9e755)
+    - Refinement for dynamically-created tables: [LCD-51702 — Own tables as cloudsqlsuperuser to make cross-env restores easier](https://github.com/cloudnative-team/liferay-portal/commit/b55f47358279f)
+    - Containing PR: [cloudnative-team/liferay-portal#110](https://github.com/cloudnative-team/liferay-portal/pull/110)
+  Companion architectural proposal: internal page on eliminating the postgres root password entirely by granting the Liferay IAM service account `cloudsqlsuperuser` membership at instance creation time. Planned sanitization for external writeup.
+
 - **StatefulSet vs Deployment for stateless-with-fragile-upgrade workloads** — *forthcoming.* ADR with live operational evidence from a production GKE workload upgrade, including the negative-evidence acknowledgment. Source material for blog post.
 
 ## Operational tooling
