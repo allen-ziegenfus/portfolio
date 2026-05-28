@@ -6,6 +6,8 @@ The original Rilke is about how categorical naming (*"this is called dog and tha
 
 ---
 
+## German
+
 Ich fürchte mich so vor des Reviewers Wort.  
 Er ordnet die Token so deutlich aus:  
 ein jedes Komma gehört in sein Haus,  
@@ -20,3 +22,20 @@ Ich will immer warnen und wehren: bleibt fern.
 Den Code, der atmet, hör ich so gern.  
 Ihr rührt ihn an: er wird starr und stumm.  
 Ihr bringt mir alle Funktionen um.
+
+## English
+
+I am so afraid of the reviewer's word.  
+He formats the tokens so clearly and with haste.  
+Every comma belongs only in its place.  
+And this is the tab and this is the space.
+
+Their work alarms me too, their play with scorn;  
+they know each line and where each clause must go;  
+no running system for them is wonderful to know;  
+their format and style so pious and concerned
+
+I want to warn them: stay your hand.  
+The code in production — I love to see it run.  
+You touch it: rigid, mute, a frozen thing.  
+You kill each optimization that I'd planned.
