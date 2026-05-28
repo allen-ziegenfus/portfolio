@@ -23,7 +23,9 @@ Cloud-native / Kubernetes / SRE / platform engineering work samples and writing.
 
 ## Writing
 
-*Blog posts will be linked here as they land.*
+- **[Ich fürchte mich so vor des Reviewers Wort](./writing/rilke-pastiche.md)** — a short pastiche after Rainer Maria Rilke, on the modern code review.
+
+*Blog posts on cloud-native infrastructure topics will land here as drafts complete.*
 
 ## About
 
