@@ -29,6 +29,5 @@ Cloud-native / Kubernetes / SRE / platform engineering work samples and writing.
 
 ## About
 
-Cloud / infrastructure engineer. Specialty: Kubernetes, Crossplane, KCL, Terraform, GitHub Actions, GCP, AWS. Interested in roles at K8s/SRE-focused platform-engineering shops.
+Cloud / infrastructure engineer. Specialty: Kubernetes, Crossplane, KCL, Terraform, GitHub Actions, GCP, AWS. 
 
-Contact: see profile · CV: link forthcoming.
