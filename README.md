@@ -15,6 +15,8 @@ Cloud-native / Kubernetes / SRE / platform engineering work samples and writing.
     - Containing PR: [cloudnative-team/liferay-portal#110](https://github.com/cloudnative-team/liferay-portal/pull/110)
   Companion architectural proposal: internal page on eliminating the postgres root password entirely by granting the Liferay IAM service account `cloudsqlsuperuser` membership at instance creation time. Planned sanitization for external writeup.
 
+- **[Use GKE Connect Gateway to protect your private control plane](./writing/connect-gateway-gke.md)** — the GKE-native, platform-included way to access a private cluster's Kubernetes API server. Beats bastion-hosts and authorized-networks on simplicity and "private by default" preservation. Two-stage auth (GCP IAM outside the gateway + Kubernetes RBAC inside the cluster) maps cleanly onto separation-of-concerns; setup is a single `gcloud container fleet memberships get-credentials` after Fleet registration.
+
 - **StatefulSet vs Deployment for stateless-with-fragile-upgrade workloads** — *forthcoming.* ADR with live operational evidence from a production GKE workload upgrade, including the negative-evidence acknowledgment. Source material for blog post.
 
 ## Operational tooling
