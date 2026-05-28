@@ -31,10 +31,6 @@ gcloud container fleet memberships get-credentials <MEMBERSHIP_NAME>
 
 This rewrites the local `kubeconfig` to route through the Connect Gateway endpoint instead of the cluster's private master IP. `kubectl` works normally afterwards.
 
-## Cost note (2026)
-
-The gateway itself is free with GKE Standard. Egress *through* the gateway is subject to standard GCP egress rates, which approximately doubled in May 2026 (NA / Europe: $0.04/GB → $0.08/GB). Worth monitoring only if your access patterns involve large `kubectl cp` operations or sustained log streaming.
-
 ## Why this is worth featuring as a recommendation
 
 For most teams running private GKE clusters, Connect Gateway is the right default — and underused, because the "I need a bastion" instinct is older than the gateway is. It's the platform-native, no-extra-infrastructure path. The auth model (IAM outside, RBAC inside) lines up cleanly with how Kubernetes-on-GCP is already authenticated everywhere else. Set the Fleet membership; grant the IAM + RBAC; done.

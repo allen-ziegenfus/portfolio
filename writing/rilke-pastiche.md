@@ -6,7 +6,26 @@ The original Rilke is about how categorical naming (*"this is called dog and tha
 
 ---
 
-## German
+## Original — Rainer Maria Rilke, *Mir zur Feier* (1899)
+
+Ich fürchte mich so vor der Menschen Wort.  
+Sie sprechen alles so deutlich aus:  
+Und dieses heißt Hund und jenes heißt Haus,  
+und hier ist Beginn und das Ende ist dort.
+
+Mich bangt auch ihr Sinn, ihr Spiel mit dem Spott,  
+sie wissen alles, was wird und war;  
+kein Berg ist ihnen mehr wunderbar;  
+ihr Garten und Gut grenzt grade an Gott.
+
+Ich will immer warnen und wehren: Bleibt fern.  
+Die Dinge singen hör ich so gern.  
+Ihr rührt sie an: sie sind starr und stumm.  
+Ihr bringt mir alle die Dinge um.
+
+— [Rainer Maria Rilke](https://en.wikipedia.org/wiki/Rainer_Maria_Rilke), *Mir zur Feier* (1899). Public domain.
+
+## Pastiche — German
 
 Ich fürchte mich so vor des Reviewers Wort.  
 Er ordnet die Token so deutlich aus:  
@@ -23,7 +42,7 @@ Den Code, der läuft, seh ich so gern.
 Ihr rührt ihn an: er wird starr und stumm.  
 Ihr bringt mir alle Funktionen um.
 
-## English
+## Pastiche — English
 
 I am so afraid of the reviewer's word.  
 He formats the tokens so clearly and with haste.  
