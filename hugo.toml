@@ -1,6 +1,6 @@
 baseURL = "https://allenz.net/"
 languageCode = "en-us"
-title = "Allen Ziegenfus — Engineering Portfolio"
+title = "Allen Ziegenfus"
 theme = "PaperMod"
 enableRobotsTXT = true
 enableEmoji = true
