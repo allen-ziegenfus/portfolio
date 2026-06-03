@@ -1,0 +1,7 @@
+{{- /* Category icon for a post, keyed off its first tag. */ -}}
+{{- with .Params.tags }}
+{{- $key := (index . 0) | urlize }}
+{{- with (resources.Get (printf "icons/%s.svg" $key)) }}
+<span class="entry-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+{{- end }}
+{{- end }}

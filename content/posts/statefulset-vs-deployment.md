@@ -2,7 +2,9 @@
 title = "StatefulSet vs Deployment for stateless-with-fragile-upgrade workloads"
 date = 2026-05-28
 draft = false
+summary = "A decision record for a workload that's operationally stateless but has a fragile single-instance upgrade: StatefulSet vs Deployment, with live operational evidence and the case for Deployment plus a startup lock."
 tags = ["Kubernetes"]
+images = ["/og/statefulset-vs-deployment.png"]
 +++
 
 ## Context
@@ -50,7 +52,7 @@ Keep `kind: StatefulSet`, replace per-pod RWO PVCs with `emptyDir`. Strict subse
 
 - **Downtime on every spec change at replicas=1.** StatefulSet's rolling update kills the lone pod *before* the replacement starts. With a 2–3 minute boot time, every env-var change, config tweak, or annotation update produces a 2–3 min outage.
 - **Per-pod cache divergence.** Each replica gets its own PVC. OSGi caches, work directories, and compiled-JSP state diverge across replicas — pods can serve different bundle versions or configuration states.
-- **PVC accumulation on scale-down.** PVCs remain bound to the deleted ordinals' identities. Autoscaling amplifies this. Kubernetes 1.27+ added `persistentVolumeClaimRetentionPolicy.whenScaled: Delete` to address this, but it must be explicitly set.
+- **PVC accumulation on scale-down.** PVCs remain bound to the deleted ordinals' identities. Autoscaling amplifies this. Kubernetes 1.27+ added `persistentVolumeClaimRetentionPolicy.whenScaled: Delete`[^pvc] to address this, but it must be explicitly set.
 - **Resize requires downtime.** Resizing `volumeClaimTemplates` requires deleting and recreating the StatefulSet (immutable field).
 - **Broader immutable-field surface than Deployment.** `serviceName`, `selector`, `volumeClaimTemplates`, `podManagementPolicy` — all immutable. With Argo CD's apply path, hitting any of these requires either a destructive `Replace=true` sync (loses ordinal identity and data) or manual `kubectl delete --cascade=orphan` outside GitOps.
 - **Zone-affinity PVC conflicts on multi-AZ clusters.** PVCs bind to a specific zone the first time they're provisioned. When the autoscaler later places a node in a different zone, the pod sits Pending indefinitely with `volume node affinity conflict`. Regional PDs avoid this but cost more.
@@ -120,7 +122,7 @@ The cost of *not* deciding is higher than the cost of any of the four options. L
 
 What the recommendation rests on, including negative evidence:
 
-- **Vendor engineering position (published, written, attributed).** The vendor's managed-cloud documentation: *"The application and Backup services use the Deployment type, so that they can share access to the document library."* StatefulSet is reserved for CI services. This is the only public, written, vendor-authored defense of a K8s controller choice for the workload — and it chooses Deployment.
+- **Vendor engineering position (published, written, attributed).** The vendor's managed-cloud documentation: *"The application and Backup services use the Deployment type, so that they can share access to the document library."* StatefulSet is reserved for CI services. This is the only public, written, vendor-authored defense of a K8s controller choice for the workload I could find — and it chooses Deployment.
 - **Vendor-employee-authored tutorial (2020).** A published tutorial deploying the platform on Kubernetes demonstrates the workload-on-K8s with Deployment, multi-replica, application-layer clustering, shared persistence.
 - **Production-deployed config from the vendor's own production cloud.** `strategy.type: Recreate` + application-level startup lock (`CONTAINER_STARTUP_LOCK_ENABLED=true`) + scale-to-1 — the documented upgrade-safety pattern in the vendor's own production cloud.
 - **Live operational observations.** 2–3 minute downtime observed on env-var change applied to the StatefulSet at replicas=1; multiple immutable-field traps hit during Argo CD synchronization on routine chart updates.
@@ -138,3 +140,5 @@ What the recommendation rests on, including negative evidence:
 ---
 
 *This documents an architectural reconsideration I led for the GKE deployment of a Java application with fragile database-upgrade semantics. The recommendation has not been formally accepted at time of writing — the document exists to put the alternatives, the evidence, and the consequences on the record so that whichever direction is chosen is chosen* with *the analysis, not* around *it.*
+
+[^pvc]: Kubernetes [`persistentVolumeClaimRetentionPolicy`](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention) (stable as of v1.27) lets a StatefulSet delete its PVCs on scale-down or deletion instead of retaining them.

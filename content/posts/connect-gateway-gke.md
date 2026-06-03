@@ -2,7 +2,9 @@
 title = "Use GKE Connect Gateway to protect your private control plane"
 date = 2026-05-28
 draft = false
+summary = "Reach a private GKE cluster's API server without a bastion or authorized-networks — using the GKE-native Connect Gateway, with GCP IAM outside the gateway and Kubernetes RBAC inside."
 tags = ["Kubernetes", "GCP", "Security"]
+images = ["/og/connect-gateway-gke.png"]
 +++
 
 
@@ -39,7 +41,7 @@ This rewrites the local `kubeconfig` to route through the Connect Gateway endpoi
 
 ## Why this is worth featuring as a recommendation
 
-For most teams running private GKE clusters, Connect Gateway is the right default — and underused, because the "I need a bastion" instinct is older than the gateway is. It's the platform-native, no-extra-infrastructure path. The auth model (IAM outside, RBAC inside) lines up cleanly with how Kubernetes-on-GCP is already authenticated everywhere else. Set the Fleet membership; grant the IAM + RBAC; done.
+For most teams running private GKE clusters, Connect Gateway is a strong default — and underused, because the "I need a bastion" instinct is older than the gateway is. It's the platform-native, no-extra-infrastructure path. The auth model (IAM outside, RBAC inside) lines up cleanly with how Kubernetes-on-GCP is already authenticated everywhere else. Set the Fleet membership; grant the IAM + RBAC; done.
 
 ## References
 

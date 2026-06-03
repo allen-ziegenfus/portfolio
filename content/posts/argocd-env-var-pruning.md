@@ -2,7 +2,9 @@
 title = "Why deleting an env var from your GitOps values doesn't remove it from the pod"
 date = 2026-06-02
 draft = false
+summary = "You delete an env var from your Helm values, Argo CD reports Synced — and it's still on the pod. Why strategic-merge-patch can't remove list items, and the Server-Side Apply fix."
 tags = ["GitOps", "Kubernetes"]
+images = ["/og/argocd-env-var-pruning.png"]
 +++
 
 
@@ -28,7 +30,7 @@ A manual one-shot sync with `Replace=true` finally dropped them. So the desired 
 
 ## The cause: strategic-merge-patch can't say "remove from list"
 
-ArgoCD's default apply is a client-side, three-way **strategic merge patch** — the same machinery as `kubectl apply`. For lists, Kubernetes uses a **merge key** where one is defined. A container's `env` list has merge key `name`. That means env entries are merged *by name*, not replaced wholesale:
+ArgoCD's default apply is a client-side, three-way **strategic merge patch**[^smp] — the same machinery as `kubectl apply`. For lists, Kubernetes uses a **merge key** where one is defined. A container's `env` list has merge key `name`. That means env entries are merged *by name*, not replaced wholesale:
 
 - Add an entry to desired state → the patch adds it.
 - Change an entry's value → the patch updates it by name.
@@ -38,7 +40,7 @@ A strategic merge patch describes what *should be present*; it has no vocabulary
 
 ## The fixes, least to most surgical
 
-1. **Server-Side Apply** (recommended). Switch the Application to SSA:
+1. **Server-Side Apply**[^ssa] (recommended). Switch the Application to SSA:
    ```yaml
    syncPolicy:
      syncOptions:
@@ -55,3 +57,6 @@ A strategic merge patch describes what *should be present*; it has no vocabulary
 **A declarative system is only as declarative as its apply semantics allow.** Strategic-merge-patch is *additive-by-default* for merge-keyed lists: it reconciles presence and values, but not absence. So "GitOps is the source of truth" quietly fails for *deletions inside merge-keyed lists* — env vars, volumes, volumeMounts, containers, ports, anything keyed by `name` — unless the apply mechanism can express removal.
 
 Server-Side Apply closed this gap by making field ownership explicit, so relinquishing a field means pruning it. If you run ArgoCD (or raw `kubectl apply`) and rely on removing list items by deleting them from values, **turn on Server-Side Apply** — otherwise your desired state and your cluster will silently diverge precisely on the things you took away.
+
+[^smp]: A [strategic merge patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/#use-a-strategic-merge-patch-to-update-a-deployment) merges list items by a defined merge key (here, `name`) instead of replacing the list — so it expresses additions and changes, but not removals.
+[^ssa]: Kubernetes [Server-Side Apply](https://kubernetes.io/docs/reference/using-api/server-side-apply/) makes field ownership explicit, so a field dropped from the desired manifest is pruned. In Argo CD, enable it per-Application with the [`ServerSideApply=true` sync option](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#server-side-apply).

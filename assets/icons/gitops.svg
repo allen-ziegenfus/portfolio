@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- repository (git branch) -->
+  <g stroke-width="7">
+    <path d="M44 95 V145" stroke="var(--brand-violet)"/>
+    <path d="M44 116 q0 22 30 22" stroke="var(--brand-violet)"/>
+    <circle cx="44" cy="84" r="11" stroke="var(--brand-sky)"/>
+    <circle cx="44" cy="156" r="11" stroke="var(--brand-sky)"/>
+    <circle cx="78" cy="138" r="11" stroke="var(--brand-fuchsia)"/>
+  </g>
+  <!-- push / deploy -->
+  <g>
+    <path class="gitops-flow" d="M108 120 H136" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+    <path d="M130 113 L142 120 L130 127" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+  </g>
+  <!-- target cluster (kubernetes wheel) -->
+  <g class="gitops-wheel">
+    <path d="M192 90 L218 105 L218 135 L192 150 L166 135 L166 105 Z" stroke="var(--brand-sky)" stroke-width="6"/>
+    <g stroke="var(--brand-violet)" stroke-width="5">
+      <path d="M192 120 L192 90"/>
+      <path d="M192 120 L218 105"/>
+      <path d="M192 120 L218 135"/>
+      <path d="M192 120 L192 150"/>
+      <path d="M192 120 L166 135"/>
+      <path d="M192 120 L166 105"/>
+    </g>
+    <circle cx="192" cy="120" r="9" stroke="var(--brand-fuchsia)" stroke-width="6"/>
+  </g>
+  <text class="gitops-label" x="120" y="210" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="800" font-size="36" letter-spacing="1" fill="var(--brand-fuchsia)">SYNC</text>
+</svg>

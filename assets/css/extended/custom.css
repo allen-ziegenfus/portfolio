@@ -1,6 +1,91 @@
 /* Slightly wider content column — better for code-heavy technical posts */
 :root {
 	--main-width: 800px;
+
+	/* Brand palette — light mode: deeper tones that read on a light tile */
+	--brand-sky: #0284c7;
+	--brand-violet: #7c3aed;
+	--brand-indigo: #4f46e5;
+	--brand-fuchsia: #c026d3;
+	--brand-purple: #7c3aed;
+
+	/* Icon tile background + shadow (light mode) */
+	--icon-tile: linear-gradient(135deg, #ede9fe, #dbeafe);
+	--icon-shadow: rgba(79, 70, 229, 0.22);
+
+	/* Soften light-mode text from near-black to a comfortable dark grey */
+	--primary: rgb(52, 54, 61);
+	--content: rgb(64, 66, 74);
+}
+
+:root[data-theme="dark"] {
+	/* dark mode: bright pastels on a deep navy tile */
+	--brand-sky: #7dd3fc;
+	--brand-violet: #c4b5fd;
+	--brand-indigo: #a5b4fc;
+	--brand-fuchsia: #f0abfc;
+	--brand-purple: #c084fc;
+
+	--icon-tile: linear-gradient(135deg, #1e1b4b, #0b0b2e);
+	--icon-shadow: rgba(11, 11, 46, 0.25);
+}
+
+/* Skip-to-content link: off-screen until a keyboard user focuses it */
+.skip-link {
+	position: absolute;
+	left: 8px;
+	top: -48px;
+	z-index: 100;
+	padding: 8px 14px;
+	border-radius: 6px;
+	background: #6d28d9;
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+	transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+	top: 8px;
+}
+
+/* Visible focus ring for keyboard navigation only (not on mouse click) */
+:focus-visible {
+	outline: 2px solid var(--brand-purple);
+	outline-offset: 2px;
+	border-radius: 3px;
+}
+
+/* Footnotes: set the inline refs apart with brackets + space; offset anchor
+   jumps so they clear the sticky header; separate the footnote list */
+.footnote-ref {
+	margin-left: 0.45em;
+	font-weight: 600;
+}
+
+.footnote-ref::before { content: "["; }
+.footnote-ref::after { content: "]"; }
+
+[id^="fn:"],
+[id^="fnref:"] {
+	scroll-margin-top: 7rem;
+}
+
+.footnotes {
+	margin-top: calc(var(--gap) * 1.5);
+	padding-top: var(--gap);
+	border-top: 1px solid var(--border);
+	font-size: 0.9em;
+}
+
+.footnotes li {
+	margin-bottom: 0.6em;
+}
+
+/* <main> is programmatically focused by the skip link — don't ring the whole block */
+main:focus,
+main:focus-visible {
+	outline: none;
 }
 
 /* Round, right-floated profile avatar (About page) */
@@ -14,25 +99,6 @@
 .avatar img {
 	border-radius: 50%;
 	box-shadow: 0 8px 24px rgba(107, 114, 128, 0.45);
-}
-
-/* Sunglasses drop onto the face on hover */
-.avatar::after {
-	content: "";
-	position: absolute;
-	top: 67px;
-	left: 53%;
-	width: 65px;
-	height: 36px;
-	transform: translateX(-66%);
-	background: url("/sunglasses.svg") no-repeat 50% / contain;
-	opacity: 0;
-	transition: opacity 0.2s ease;
-	pointer-events: none;
-}
-
-.avatar:hover::after {
-	opacity: 1;
 }
 
 /* Tags live in a topics strip + tag pages, not on each post */
@@ -143,10 +209,9 @@
 }
 
 /* Purple gradient on the homepage name and every page/post title */
-.home-info .entry-header h1,
-.page-header h1,
-.post-title {
-	background: linear-gradient(90deg, #6d28d9 0%, #9333ea 45%, #c084fc 100%);
+.logo a {
+	background: linear-gradient(90deg, #6d28d9, #9333ea, #c084fc, #9333ea, #6d28d9);
+	background-size: 200% auto;
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -154,10 +219,314 @@
 	display: inline-block;
 }
 
+/* On hover, the name's gradient flows left to right */
+.logo a:hover {
+	animation: name-shimmer 2.4s linear infinite;
+}
+
+@keyframes name-shimmer {
+	to { background-position: -200% center; }
+}
+
 /* Tighten the homepage gap between the intro/social icons and the post list */
 .first-entry {
 	min-height: auto;
 	margin-bottom: var(--gap);
+}
+
+/* Category icon on each post card — colorful glyph on a dark tile (echoes the OG card) */
+/* Card: two columns — icon on the left, title/summary/meta stacked on the right */
+.post-entry {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.entry-body {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.entry-icon {
+	flex: 0 0 auto;
+	margin-top: 4px;
+	width: 108px;
+	height: 108px;
+	border-radius: 22px;
+	background: var(--icon-tile);
+	display: grid;
+	place-items: center;
+	box-shadow: 0 3px 10px var(--icon-shadow);
+	/* match the card's own hover transition so they move together */
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.entry-icon svg {
+	width: 88px;
+	height: 88px;
+}
+
+/* Single-post: icon beside the title (like the cards), not orphaned above it */
+.post-title-row {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.post-title-row .entry-icon {
+	margin: 0;
+}
+
+.post-title-row .post-title {
+	margin: 0;
+}
+
+/* Hover: tile scales gently in step with the card — light glow, no heavy shadow */
+.post-entry:hover .entry-icon {
+	box-shadow: 0 6px 16px rgba(124, 58, 237, 0.2);
+}
+
+/* State labels are hidden until hover */
+.entry-icon .iac-plan,
+.entry-icon .iac-apply {
+	opacity: 0;
+}
+
+/* Kubernetes — the wheel turns, like the scheduler at work */
+.k8s-spin {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.post-entry:hover .entry-icon .k8s-spin {
+	animation: k8s-spin 6s linear infinite;
+}
+
+@keyframes k8s-spin {
+	to { transform: rotate(360deg); }
+}
+
+/* Databases — primary replicates to the replica: data flows across the link
+   and the replica's bands fill in */
+.post-entry:hover .entry-icon .db-flow {
+	stroke-dasharray: 8 7;
+	animation: db-flow 0.7s linear infinite;
+}
+
+@keyframes db-flow {
+	to { stroke-dashoffset: -15; }
+}
+
+.post-entry:hover .entry-icon .db-fill1 { animation: db-fill 1.6s ease-in-out infinite; }
+.post-entry:hover .entry-icon .db-fill2 { animation: db-fill 1.6s ease-in-out 0.35s infinite; }
+
+@keyframes db-fill {
+	0%, 100% { opacity: 0.3; }
+	50%      { opacity: 1; }
+}
+
+/* Infrastructure as Code — plan → apply: the arrow turns fuchsia and flows
+   right, the stacks build up, and the label cycles PLAN → APPLY */
+.post-entry:hover .entry-icon .iac-shaft {
+	stroke: #f0abfc;
+	stroke-dasharray: 9 7;
+	animation: iac-flow 0.7s linear infinite;
+}
+
+.post-entry:hover .entry-icon .iac-head {
+	stroke: #f0abfc;
+}
+
+@keyframes iac-flow {
+	to { stroke-dashoffset: -16; }
+}
+
+.post-entry:hover .entry-icon .iac-l1 { animation: iac-build 1.8s ease-in-out infinite; }
+.post-entry:hover .entry-icon .iac-l2 { animation: iac-build 1.8s ease-in-out 0.25s infinite; }
+.post-entry:hover .entry-icon .iac-l3 { animation: iac-build 1.8s ease-in-out 0.5s infinite; }
+
+@keyframes iac-build {
+	0%, 100% { opacity: 0.4; }
+	45%      { opacity: 1; }
+}
+
+.post-entry:hover .entry-icon .iac-plan { animation: iac-plan 4.4s ease-in-out infinite; }
+.post-entry:hover .entry-icon .iac-apply { animation: iac-apply 4.4s ease-in-out infinite; }
+
+@keyframes iac-plan {
+	0%, 35%   { opacity: 1; }
+	50%, 100% { opacity: 0; }
+}
+
+@keyframes iac-apply {
+	0%, 50%  { opacity: 0; }
+	65%, 92% { opacity: 1; }
+	100%     { opacity: 0; }
+}
+
+/* GitOps — the repo pushes to the cluster: the link flows and the cluster
+   reconciles (the wheel turns) */
+.post-entry:hover .entry-icon .gitops-flow {
+	stroke-dasharray: 8 7;
+	animation: gitops-flow 0.7s linear infinite;
+}
+
+@keyframes gitops-flow {
+	to { stroke-dashoffset: -15; }
+}
+
+.gitops-wheel {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.post-entry:hover .entry-icon .gitops-wheel {
+	animation: gitops-wheel 5s linear infinite;
+}
+
+@keyframes gitops-wheel {
+	to { transform: rotate(360deg); }
+}
+
+/* SDLC — the lifecycle loop turns */
+.sdlc-spin {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.post-entry:hover .entry-icon .sdlc-spin {
+	animation: sdlc-spin 6s linear infinite;
+}
+
+@keyframes sdlc-spin {
+	to { transform: rotate(360deg); }
+}
+
+/* Action label inside the arrow-based icons (Databases → REPLICATE, GitOps →
+   SYNC), revealed on hover like IaC's PLAN/APPLY */
+.db-label,
+.gitops-label {
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.post-entry:hover .entry-icon .db-label,
+.post-entry:hover .entry-icon .gitops-label {
+	opacity: 1;
+}
+
+/* Observability — the pulse trace sweeps across, live */
+.obs-pulse {
+	stroke-dasharray: 100;
+}
+
+.post-entry:hover .entry-icon .obs-pulse {
+	animation: obs-pulse 1.9s linear infinite;
+}
+
+@keyframes obs-pulse {
+	0%       { stroke-dashoffset: 100; }
+	70%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Security — the check draws in, verifying */
+.sec-check {
+	stroke-dasharray: 100;
+}
+
+.post-entry:hover .entry-icon .sec-check {
+	animation: sec-check 1.8s ease-in-out infinite;
+}
+
+@keyframes sec-check {
+	0%       { stroke-dashoffset: 100; }
+	55%, 100% { stroke-dashoffset: 0; }
+}
+
+/* GCP — the sync arrows pulse up and down */
+.gcp-up,
+.gcp-down {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.post-entry:hover .entry-icon .gcp-up {
+	animation: gcp-up 1.4s ease-in-out infinite;
+}
+
+.post-entry:hover .entry-icon .gcp-down {
+	animation: gcp-down 1.4s ease-in-out infinite;
+}
+
+@keyframes gcp-up {
+	0%, 100% { transform: translateY(0); }
+	50%      { transform: translateY(-7px); }
+}
+
+@keyframes gcp-down {
+	0%, 100% { transform: translateY(0); }
+	50%      { transform: translateY(7px); }
+}
+
+/* Poetry — the quill writes successive lines of verse onto a clear page,
+   with a carriage-return between each line */
+.poem-l1,
+.poem-l2,
+.poem-l3 {
+	stroke-dasharray: 100;
+}
+
+.post-entry:hover .entry-icon .poem-quill { animation: poem-quill-move 3.6s ease-in-out infinite; }
+.post-entry:hover .entry-icon .poem-l1 { animation: poem-l1 3.6s linear infinite; }
+.post-entry:hover .entry-icon .poem-l2 { animation: poem-l2 3.6s linear infinite; }
+.post-entry:hover .entry-icon .poem-l3 { animation: poem-l3 3.6s linear infinite; }
+
+@keyframes poem-quill-move {
+	0%        { transform: translate(0, 0); }
+	26%       { transform: translate(72px, 0); }
+	31%       { transform: translate(0, 32px); }
+	57%       { transform: translate(72px, 32px); }
+	62%       { transform: translate(0, 64px); }
+	88%, 100% { transform: translate(72px, 64px); }
+}
+
+@keyframes poem-l1 {
+	0%        { stroke-dashoffset: 100; }
+	26%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes poem-l2 {
+	0%, 31%   { stroke-dashoffset: 100; }
+	57%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes poem-l3 {
+	0%, 62%   { stroke-dashoffset: 100; }
+	88%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Accessibility: honour the OS "reduce motion" setting — stop the looping
+   icon/card animations for users who are sensitive to motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.entry-icon { width: 84px; height: 84px; border-radius: 18px; }
+	.entry-icon svg { width: 66px; height: 66px; }
+
+	/* Smaller headings on mobile so titles don't wrap to 4–5 lines */
+	.home-info .entry-header h1 { font-size: 28px; }
+	.entry-header h2 { font-size: 19px; line-height: 1.3; }
+	.post-title { font-size: 26px; line-height: 1.25; }
+	.page-header h1 { font-size: 28px; }
 }
 
 /* Related posts at the foot of each post */
@@ -205,14 +574,23 @@
 
 .footer-social .social-icons a {
 	padding: 6px;
-	color: var(--secondary);
-}
-
-.footer-social .social-icons a:hover {
-	color: var(--primary);
 }
 
 .footer-social .social-icons a svg {
 	height: 20px;
 	width: 20px;
 }
+
+/* Social icons: softer grey by default (legible in light mode, not "very dark"),
+   infused with brand colours on hover */
+.social-icons a {
+	color: var(--secondary);
+	transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-icons a:hover {
+	transform: translateY(-2px);
+}
+
+.social-icons a:nth-of-type(1):hover { color: var(--brand-sky); }
+.social-icons a:nth-of-type(2):hover { color: var(--brand-fuchsia); }

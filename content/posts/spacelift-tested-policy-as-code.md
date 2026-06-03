@@ -2,7 +2,9 @@
 title = "Test your guardrails: policy-as-code that you actually verify"
 date = 2026-06-02
 draft = false
+summary = "Policy-as-code that's never tested usually fails open — it waves violations through and no one notices. How to test guardrails so they both deny when they must and pass when they must."
 tags = ["Infrastructure as Code", "Security"]
+images = ["/og/spacelift-tested-policy-as-code.png"]
 +++
 
 

@@ -1,0 +1,9 @@
+<div class="social-icons" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.socialIcons }}
+    {{- $label := (.title | default .name) | title }}
+    <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+        aria-label="{{ $label }}" title="{{ $label }}">
+        {{ partial "svg.html" . }}
+    </a>
+    {{- end }}
+</div>

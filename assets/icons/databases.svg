@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <filter id="ds-db" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2.5" flood-color="#0b0b2e" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+  <!-- primary -->
+  <ellipse cx="56" cy="62" rx="32" ry="13" stroke="var(--brand-sky)"/>
+  <path d="M24 62 V146 a32 13 0 0 0 64 0 V62" stroke="var(--brand-violet)"/>
+  <path d="M24 90 a32 13 0 0 0 64 0" stroke="var(--brand-indigo)"/>
+  <path d="M24 118 a32 13 0 0 0 64 0" stroke="var(--brand-indigo)"/>
+  <!-- replica -->
+  <ellipse cx="184" cy="62" rx="32" ry="13" stroke="var(--brand-sky)"/>
+  <path d="M152 62 V146 a32 13 0 0 0 64 0 V62" stroke="var(--brand-violet)"/>
+  <path class="db-fill1" d="M152 90 a32 13 0 0 0 64 0" stroke="var(--brand-indigo)"/>
+  <path class="db-fill2" d="M152 118 a32 13 0 0 0 64 0" stroke="var(--brand-indigo)"/>
+  <!-- replication flow -->
+  <g class="db-repl" filter="url(#ds-db)">
+    <path class="db-flow" d="M96 104 H140" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+    <path d="M130 93 L146 104 L130 115" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+  </g>
+</svg>

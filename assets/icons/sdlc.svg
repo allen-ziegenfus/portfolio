@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g class="sdlc-spin">
+    <!-- continuous lifecycle loop, open at the top -->
+    <path d="M150 62 A66 66 0 1 1 96 58" stroke="var(--brand-sky)" stroke-width="9"/>
+    <!-- arrowhead closing the loop (clockwise) -->
+    <path d="M82 50 L96 58 L88 73" stroke="var(--brand-fuchsia)" stroke-width="9"/>
+  </g>
+  <text x="120" y="134" text-anchor="middle" stroke="none" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="800" font-size="34" letter-spacing="1">
+    <tspan class="sdlc-S" fill="var(--brand-sky)">S</tspan><tspan class="sdlc-D" fill="var(--brand-violet)">D</tspan><tspan class="sdlc-L" fill="var(--brand-indigo)">L</tspan><tspan class="sdlc-C" fill="var(--brand-fuchsia)">C</tspan>
+  </text>
+</svg>

@@ -2,7 +2,9 @@
 title = "A clone-and-go installer: GCP Cloud Shell tutorials + Infrastructure Manager"
 date = 2026-06-02
 draft = false
+summary = "Turning a many-step platform install — APIs, IAM, Terraform, state, secrets — into a browser-only, guided, clone-and-go onboarding with GCP Cloud Shell tutorials and Infrastructure Manager."
 tags = ["Infrastructure as Code", "GCP"]
+images = ["/og/cloud-shell-tutorial-infra-manager.png"]
 +++
 
 
@@ -50,11 +52,11 @@ Infrastructure Manager needs a small, specific permission setup, which a bootstr
 
 The shape is "a managed service runs your Terraform as a service account you scoped, triggered by a build, with state it owns" — which is exactly what you want when handing an install to someone who shouldn't (and shouldn't have to) hold production credentials.
 
-## Why this is the right pattern for distributing infrastructure
+## Why this is one effective pattern for distributing infrastructure
 
 - **Zero local setup.** Browser only. No SDK, no Terraform, no auth dance. The support surface for "my environment" goes to zero.
 - **No credentials on the laptop.** The user authenticates to Cloud Shell with their Google identity; the *apply* runs as a least-privilege runner SA inside GCP. No `owner` PAT, no exported service-account key.
-- **APIs and project are guaranteed correct.** The walkthrough verifies billing, project, and API enablement before the build — the most common silent failures, prevented structurally.
+- **APIs and project are checked up front.** The walkthrough verifies billing, project, and API enablement before the build — the most common silent failures, headed off structurally.
 - **State and tool version are managed.** Infrastructure Manager owns both, so two different operators get identical, reproducible runs.
 - **Reproducible, not click-ops.** The tutorial and the Terraform are versioned together; an install is a known revision of a repo, not a person's memory of a Slack thread.
 

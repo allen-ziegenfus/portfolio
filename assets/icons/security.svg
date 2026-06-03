@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M120 36 L186 64 V118 C186 160 158 184 120 200 C82 184 54 160 54 118 V64 Z" stroke="var(--brand-sky)" stroke-width="7"/>
+  <path class="sec-check" pathLength="100" d="M88 122 L110 146 L154 94" stroke="var(--brand-fuchsia)" stroke-width="11"/>
+</svg>

@@ -2,7 +2,9 @@
 title = "One GitHub App, two auth models: repo credentials, webhooks, and SSO for Argo CD"
 date = 2026-06-02
 draft = false
+summary = "Argo CD needs three different things from GitHub — repo reads, webhook delivery, and human SSO. How a single GitHub App covers all three with short-lived installation tokens instead of a leak-prone PAT."
 tags = ["GitOps", "Security"]
+images = ["/og/argocd-github-app-auth.png"]
 +++
 
 

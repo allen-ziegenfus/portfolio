@@ -2,7 +2,9 @@
 title = "Structured JSON logging for a legacy Java app on Kubernetes — without forking the image"
 date = 2026-06-02
 draft = false
+summary = "How to retrofit machine-parseable JSON logging onto a legacy Java app on Kubernetes — both log4j2 and Tomcat's JUL — without forking the vendor image, as an opt-in, fail-open, cleanly revertible layer."
 tags = ["Observability", "Kubernetes"]
+images = ["/og/structured-json-logging-k8s.png"]
 +++
 
 
@@ -42,7 +44,7 @@ The two streams are normalized to a shared field set — timestamp, level, logge
 
 ## A concrete payoff: Tomcat logs stop being errors
 
-There's a specific operational misery this fixes. JUL's default `ConsoleHandler` writes **every** record — `INFO`, lifecycle chatter, routine startup messages, all of it — to **stderr**. GKE's logging agent, given no structured severity to go on, infers a line's severity from the stream it arrived on: stdout becomes `INFO`, and **stderr becomes `ERROR`**. The result is that in Cloud Logging's Log Explorer, *every Tomcat log line shows up red as an `ERROR`* — including the entirely routine ones. Real errors are buried in a sea of false ones, and any alerting policy keyed on `ERROR` severity is worthless.
+There's a specific operational misery this fixes. JUL's default `ConsoleHandler` writes **every** record — `INFO`, lifecycle chatter, routine startup messages, all of it — to **stderr**. GKE's logging agent, given no structured severity to go on, infers a line's severity from the stream it arrived on: stdout becomes `INFO`, and **stderr becomes `ERROR`**.[^gke] The result is that in Cloud Logging's Log Explorer, *every Tomcat log line shows up red as an `ERROR`* — including the entirely routine ones. Real errors are buried in a sea of false ones, and any alerting policy keyed on `ERROR` severity is worthless.
 
 Emitting structured JSON with an explicit `severity` field fixes this directly: the agent parses the JSON and honors the per-line `severity` instead of falling back to the stream. An `INFO` Tomcat record is now classified `INFO`, even though it still rides stderr. The Log Explorer goes from uniformly red to correctly leveled — the difference between logs you can alert on and logs you scroll past.
 
@@ -57,3 +59,5 @@ Because the failure modes are subtle (a misplaced classpath resource silently do
 - **Logging must fail open.** Anything in the observability path that can fail for external reasons should degrade, never block startup.
 - **Normalize the schema at the source.** One consistent shape out of the workload beats N reconciliations downstream.
 - **Make severity explicit; never let the platform infer it from the stream.** A subsystem that logs everything to stderr gets silently classified as all-errors by stream-based heuristics. An explicit `severity` field in the payload is the only reliable signal.
+
+[^gke]: When a log line carries no explicit severity, Google Cloud's logging agent infers it from the output stream — `stdout` → `INFO`, `stderr` → `ERROR`. Emitting a `severity` field in [structured JSON logs](https://cloud.google.com/logging/docs/structured-logging) overrides that inference.

@@ -29,15 +29,15 @@ Corporate web platform. Migrated from on-prem VMs to a managed PaaS (AWS, then G
 
 **Front-End Engineer** · Liferay GmbH, Germany · *2016–2018* — marketing microsites and an Appcelerator Titanium events mobile app.
 
-**SAS-BI Consultant** · anaxima GmbH, Germany · *2008–2015* — risk and regulatory reporting for banking (Commerzbank market-risk, Solvency II).
+**SAS-BI Consultant** · anaxima GmbH, Germany · *2008–2015* — risk and regulatory reporting for banking (Commerzbank market-risk, Solvency II), and a sales-management reporting platform used by thousands of bank employees.
 
 **Independent Consultant** · *2002–2008* — C# / .NET, Postscript composition, and Oracle data migration.
 
 ### Selected independent work
 
-- **Vollrad Kutscher** — artist catalog site (Astro, Tailwind, GitHub Actions)
-- **City of Wiesbaden, Germany** — city-hall history exhibit (Python, MkDocs, GitHub Actions)
-- **Ingeborg Lüscher** — artist catalog (custom WordPress theme)
+- **[Vollrad Kutscher](https://werkverzeichnis.vollrad-kutscher.de/)** — artist catalog site (Astro, Tailwind, Airtable, GitHub Actions)
+- **[City of Wiesbaden, Germany](https://fuer-demokratie-33-45-wiesbaden.de/personen.html)** — city-hall history exhibit (Python, MkDocs, GitHub Actions)
+- **[Ingeborg Lüscher](https://ingeborgluescher.com/)** — artist catalog (custom WordPress theme)
 
 ## Skills
 

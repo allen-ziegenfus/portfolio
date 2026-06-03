@@ -2,7 +2,9 @@
 title = "Environment-stable table ownership: surviving cross-environment restore with IAM database auth"
 date = 2026-06-02
 draft = false
+summary = "Cloud SQL IAM database auth breaks cross-environment restores because table ownership encodes a per-environment service account. Make ownership environment-independent by owning every table as cloudsqlsuperuser."
 tags = ["Databases", "Security", "GCP"]
+images = ["/og/cloudsqlsuperuser-table-ownership.png"]
 +++
 
 
@@ -32,7 +34,7 @@ The symptom looks like a permissions or auth problem. The cause is that **owners
 
 ## The fix: own everything as `cloudsqlsuperuser`
 
-Cloud SQL provides a built-in role, **`cloudsqlsuperuser`**, that exists *identically on every Cloud SQL instance* (it's the closest thing Cloud SQL offers to a real superuser, since it withholds true `SUPERUSER`). If every table is owned by `cloudsqlsuperuser` instead of by the per-environment SA, ownership becomes **environment-independent**:
+Cloud SQL provides a built-in role, **`cloudsqlsuperuser`**, that exists *identically on every Cloud SQL instance* (it's the closest thing Cloud SQL offers to a real superuser, since it withholds true `SUPERUSER`).[^cloudsql] If every table is owned by `cloudsqlsuperuser` instead of by the per-environment SA, ownership becomes **environment-independent**:
 
 - A staging dump restored into production arrives with all objects owned by `cloudsqlsuperuser` — a role that already exists in production and means the same thing there.
 - The per-environment app SA no longer needs to *own* tables; it only needs the **privileges** to use them (`SELECT`/`INSERT`/`UPDATE`/`DELETE`, `USAGE` on sequences, etc.), granted via role membership or default privileges.
@@ -63,3 +65,5 @@ The cross-environment restore flow collapses to "restore the data" — no identi
 This is the same failure family as [stable-vs-rewritten *identity* across environments]({{< ref "webid-cross-env-restore" >}}): **a value persisted in the database that also encodes which environment it belongs to is a cross-environment portability hazard.** There the value was a tenant's `web.id`; here it's *object ownership*. In both cases the moment you move data between environments, the persisted copy disagrees with the target environment, and the system has no way to reconcile it except to fail or to bolt on a translation step.
 
 The robust pattern is to **separate identity-for-access from identity-for-ownership**. Let the per-environment IAM SA carry *access* (it's the right place for least-privilege, per-environment credentials), but anchor *ownership* to a role that is constant across environments. Ownership baked into data should be environment-invariant; anything environment-specific belongs in the grant layer, not the ownership layer. Get that separation right and cross-environment restore stops being a special operation with its own fix-up choreography — it becomes a plain data copy.
+
+[^cloudsql]: `cloudsqlsuperuser` is the default superuser role Cloud SQL grants to the user accounts you create; the managed service withholds the true PostgreSQL `SUPERUSER` attribute. See [Cloud SQL for PostgreSQL users](https://cloud.google.com/sql/docs/postgres/users) and [IAM database authentication](https://cloud.google.com/sql/docs/postgres/iam-authentication).

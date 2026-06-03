@@ -2,7 +2,9 @@
 title = "When Terraform owns a shared resource as if it were dedicated"
 date = 2026-06-02
 draft = false
+summary = "When a per-cluster Terraform module owns a project-global, shared resource, tearing down one cluster quietly breaks the others. Why resources with different lifecycles can't share state — and the bootstrap-module fix."
 tags = ["Infrastructure as Code", "GCP"]
+images = ["/og/terraform-shared-resource-fragility.png"]
 +++
 
 

@@ -2,7 +2,9 @@
 title = "Applying Terraform from CI is a stateful problem wearing a stateless tool"
 date = 2026-06-02
 draft = false
+summary = "GitHub Actions is a near-perfect stateless task runner — and a poor fit for applying Terraform, which is stateful, collaborative, and approval-gated. The practical case, from running it both ways."
 tags = ["Infrastructure as Code"]
+images = ["/og/spacelift-vs-github-actions-terraform.png"]
 +++
 
 
@@ -41,4 +43,4 @@ That `0/0/0` is a precise, visible, reviewable proof that the refactor is purely
 
 Match the tool to the *shape* of the work, not just the verb. "It runs commands in CI" is true of `terraform apply`, but apply is a **stateful, serialized, approval-gated, audited** operation, and CI runners are **stateless, concurrent, ephemeral** executors. Every safety property you need for Terraform is something you'd have to add back on top of CI — and the homegrown version is exactly where the incidents come from.
 
-GitHub Actions remains the right tool for building and testing. For *applying* Terraform across a team, a platform that treats state, locking, plan-approval, audit, drift, and policy as first-class isn't a luxury — it's the difference between infrastructure changes that are reviewable and reversible and ones that are a held breath. And as a bonus, against a stable environment it hands you the single most reassuring sentence in infrastructure work: *no changes.*
+GitHub Actions remains a great fit for building and testing. For *applying* Terraform across a team, a platform that treats state, locking, plan-approval, audit, drift, and policy as first-class isn't a luxury — it's the difference between infrastructure changes that are reviewable and reversible and ones that are a held breath. And as a bonus, against a stable environment it hands you the single most reassuring sentence in infrastructure work: *no changes.*

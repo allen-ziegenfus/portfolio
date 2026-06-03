@@ -2,7 +2,9 @@
 title = "The admin stack that manages itself: bootstrapping a self-hosted IaC control plane"
 date = 2026-06-02
 draft = false
+summary = "If your IaC orchestrator is itself configured as code, you need an admin stack that provisions every stack — including itself. The elegant pattern, and the two bootstrap problems no amount of declarative code removes."
 tags = ["Infrastructure as Code"]
+images = ["/og/spacelift-self-managing-admin-stack.png"]
 +++
 
 
@@ -44,7 +46,7 @@ One related trap: **do not add a `backend "..."` block to the repo.** Spacelift 
 
 ## Bootstrap problem 2: you can't grant yourself permissions you don't have
 
-The admin stack manages resources across multiple spaces, so it needs an org-wide admin role. But it **cannot grant itself that role** — to create a role binding that powerful, you'd already need to be that powerful. This is a genuine chicken-and-egg, not a tooling gap, and the only correct answer is a **manual seed in the UI**:
+The admin stack manages resources across multiple spaces, so it needs an org-wide admin role. But it **cannot grant itself that role** — to create a role binding that powerful, you'd already need to be that powerful. This is a genuine chicken-and-egg, not a tooling gap, and the practical answer is a **manual seed in the UI**:
 
 - Confirm the admin stack lives in the `root` space (Spacelift only allows a stack a role scoped to a space it sits in or above).
 - Manually bind the **Space admin** role on `root` to the admin stack as principal. A single binding on `root` cascades to child spaces.

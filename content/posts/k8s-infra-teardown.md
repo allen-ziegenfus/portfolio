@@ -2,7 +2,9 @@
 title = "Tearing down a managed-Kubernetes deployment without leaving a tail"
 date = 2026-06-02
 draft = false
+summary = "A field guide to deleting a GKE or EKS deployment cleanly when the cluster, the in-cluster GitOps/Crossplane layer, and Terraform all disagree about who owns cleanup — orphans, deletion order, and the stuck cases."
 tags = ["Infrastructure as Code", "Kubernetes", "GCP"]
+images = ["/og/k8s-infra-teardown.png"]
 +++
 
 

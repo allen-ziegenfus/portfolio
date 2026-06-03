@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- clear sheet of paper -->
+  <rect x="46" y="34" width="118" height="172" rx="12" stroke="var(--brand-sky)" stroke-width="6"/>
+  <!-- lines of verse, written in sequence -->
+  <path class="poem-l1" pathLength="100" d="M66 90 H138" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+  <path class="poem-l2" pathLength="100" d="M66 122 H138" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+  <path class="poem-l3" pathLength="100" d="M66 154 H120" stroke="var(--brand-fuchsia)" stroke-width="7"/>
+  <!-- quill -->
+  <g class="poem-quill">
+    <path d="M150 40 C112 50 84 70 74 94 C100 88 134 66 150 40 Z" stroke="var(--brand-violet)" stroke-width="6"/>
+    <path d="M130 58 L66 94" stroke="var(--brand-sky)" stroke-width="5"/>
+  </g>
+</svg>

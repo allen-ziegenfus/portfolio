@@ -28,7 +28,7 @@ enableEmoji = true
     weight = 10
 
 [params]
-  description = "Cloud-native / Kubernetes / SRE / platform engineering work samples and writing."
+  description = "Engineering notes and essays on Kubernetes, GCP, Terraform, GitOps, and building cloud-native platforms."
   defaultTheme = "auto"
   ShowReadingTime = true
   ShowCodeCopyButtons = true
@@ -44,8 +44,8 @@ enableEmoji = true
     apple_touch_icon = "/apple-touch-icon.png"
 
   [params.homeInfoParams]
-    Title = "Allen Ziegenfus"
-    Content = "Software engineer building cloud-native platforms — Kubernetes, GCP, Terraform, and GitOps, with a system-first, low-entropy approach. Engineering notes and case studies below."
+    Title = "Writings on software engineering"
+    Content = "Software engineer building cloud-native platforms — Kubernetes, GCP, Terraform, and GitOps, with a system-first, low-entropy approach. Engineering notes and essays below."
 
   [[params.socialIcons]]
     name = "github"

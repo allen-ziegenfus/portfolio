@@ -2,7 +2,9 @@
 title = "When Go templates outgrow you: a typed-language alternative for Crossplane compositions"
 date = 2026-05-28
 draft = false
+summary = "When Crossplane's Go-template compositions outgrow you — no types, no tests, global scope — KCL offers a typed, testable alternative. The multi-step pipeline architecture, and the bugs only end-to-end validation catches."
 tags = ["Infrastructure as Code", "Kubernetes"]
+images = ["/og/kcl-crossplane.png"]
 +++
 
 [Crossplane](https://www.crossplane.io/) lets you define cloud infrastructure as Kubernetes composite resources, with the actual resource emission handled by a composition pipeline. The default composition language is **Go templates** rendered by `function-go-templating`. For small compositions this works fine.
