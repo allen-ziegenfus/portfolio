@@ -38,6 +38,7 @@ Corporate web platform. Migrated from on-prem VMs to a managed PaaS (AWS, then G
 - **[Vollrad Kutscher](https://werkverzeichnis.vollrad-kutscher.de/)** — artist catalog site (Astro, Tailwind, Airtable, GitHub Actions)
 - **[City of Wiesbaden, Germany](https://fuer-demokratie-33-45-wiesbaden.de/personen.html)** — city-hall history exhibit (Python, MkDocs, GitHub Actions)
 - **[Ingeborg Lüscher](https://ingeborgluescher.com/)** — artist catalog (custom WordPress theme)
+- **[Ilona Surrey](https://www.ilonasurrey.de/)** — digital fine-art portfolio (WordPress)
 
 ## Skills
 

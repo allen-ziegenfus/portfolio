@@ -12,6 +12,7 @@
 	/* Icon tile background + shadow (light mode) */
 	--icon-tile: linear-gradient(135deg, #ede9fe, #dbeafe);
 	--icon-shadow: rgba(79, 70, 229, 0.22);
+	--icon-edge: rgba(0, 0, 0, 0.08);
 
 	/* Soften light-mode text from near-black to a comfortable dark grey */
 	--primary: rgb(52, 54, 61);
@@ -28,6 +29,7 @@
 
 	--icon-tile: linear-gradient(135deg, #1e1b4b, #0b0b2e);
 	--icon-shadow: rgba(11, 11, 46, 0.25);
+	--icon-edge: rgba(255, 255, 255, 0.14);
 }
 
 /* Skip-to-content link: off-screen until a keyboard user focuses it */
@@ -68,6 +70,11 @@
 
 [id^="fn:"],
 [id^="fnref:"] {
+	scroll-margin-top: 7rem;
+}
+
+/* ToC / anchor jumps to headings also need to clear the sticky header */
+.post-content :where(h1, h2, h3, h4, h5, h6) {
 	scroll-margin-top: 7rem;
 }
 
@@ -256,7 +263,7 @@ main:focus-visible {
 	background: var(--icon-tile);
 	display: grid;
 	place-items: center;
-	box-shadow: 0 3px 10px var(--icon-shadow);
+	box-shadow: 0 0 0 1px var(--icon-edge), 0 5px 16px var(--icon-shadow);
 	/* match the card's own hover transition so they move together */
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
