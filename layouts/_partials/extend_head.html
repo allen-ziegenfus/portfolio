@@ -1,14 +1,12 @@
-{{- /* Enrich social cards: image dimensions + Twitter card.
-       PaperMod's opengraph emits og:image but not width/height for path-based
-       images, and no Twitter tags — several preview scrapers need these. */ -}}
+{{- /* Vector favicon for modern browsers — resolution-independent, always crisp.
+       The PNG/ICO from params.assets stay as fallbacks for older browsers. */ -}}
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}" />
+
+{{- /* PaperMod emits og:image and a full Twitter card already; it omits the
+       og:image dimensions, which several preview scrapers want. Add just those. */ -}}
 {{- with .Params.images }}
-{{- $img := (index . 0) | absURL }}
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
-<meta property="og:image:alt" content="{{ $.Title }}" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="{{ $img }}" />
-<meta name="twitter:title" content="{{ $.Title }}" />
-<meta name="twitter:description" content="{{ ($.Description | default $.Summary | default site.Params.description) | plainify }}" />
+<meta property="og:image:alt" content="{{ or $.Title site.Title }}" />
 {{- end }}

@@ -37,6 +37,9 @@ enableEmoji = true
   ShowBreadCrumbs = false
   ShowPostNavLinks = true
 
+  [params.label]
+    text = "Allen Ziegenfus"
+
   [params.assets]
     favicon = "/favicon.ico"
     favicon16x16 = "/favicon-16x16.png"

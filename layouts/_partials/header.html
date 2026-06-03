@@ -4,7 +4,10 @@
         <div class="logo">
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
-            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">{{- $label_text -}}</a>
+            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
+                {{- with (resources.Get "icons/logo-arz.svg") }}<span class="logo-mark" aria-hidden="true">{{ .Content | safeHTML }}</span>{{- end }}
+                <span class="logo-name">{{- $label_text -}}</span>
+            </a>
             {{- end }}
         </div>
         {{- $currentPage := . }}

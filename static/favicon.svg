@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 64 64"
+   version="1.1"
+   id="svg2"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="g"
+       x1="0"
+       y1="0"
+       x2="64"
+       y2="64"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#a5e8ff"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#f7b8ff"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <rect
+     width="64"
+     height="64"
+     rx="13"
+     fill="#0a0a23"
+     id="rect2" />
+  <path
+     d="M 27.515625,47 24.830078,39.265625 H 13.292969 L 10.607422,47 H 4.2695312 L 15.3125,16.728516 h 7.476562 L 33.789062,47 Z M 19.050781,21.390625 18.921875,21.863281 Q 18.707031,22.636719 18.40625,23.625 18.105469,24.613281 14.710938,34.496094 h 8.701171 L 20.425781,25.794922 19.501953,22.873047 Z M 59.558594,47 H 35.259766 V 42.509766 L 51.630859,21.691406 H 36.892578 v -4.96289 h 21.785156 v 4.404296 L 42.306641,42.037109 h 17.251953 z"
+     id="text2"
+     style="font-weight:bold;font-size:44px;font-family:'Liberation Sans', Arial, sans-serif;letter-spacing:-1;text-anchor:middle;fill:url(#g)"
+     aria-label="AZ" />
+</svg>
