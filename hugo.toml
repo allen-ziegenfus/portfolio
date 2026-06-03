@@ -1,0 +1,78 @@
+baseURL = "https://portfolio.allenz.net/"
+languageCode = "en-us"
+title = "Allen Ziegenfus — Engineering Portfolio"
+theme = "PaperMod"
+enableRobotsTXT = true
+enableEmoji = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[permalinks]
+  posts = "/writing/:slug/"
+
+[pagination]
+  pagerSize = 500
+
+[related]
+  threshold = 60
+  includeNewer = true
+  toLower = true
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
+[params]
+  description = "Cloud-native / Kubernetes / SRE / platform engineering work samples and writing."
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = true
+  ShowBreadCrumbs = false
+  ShowPostNavLinks = true
+
+  [params.assets]
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+
+  [params.homeInfoParams]
+    Title = "Allen Ziegenfus"
+    Content = "Software engineer building cloud-native platforms — Kubernetes, GCP, Terraform, and GitOps, with a system-first, low-entropy approach. Engineering notes and case studies below."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/allen-ziegenfus"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/allen-ziegenfus-3281b1239"
+
+  [params.fuseOpts]
+    keys = ["title", "permalink", "summary", "content", "tags"]
+
+[[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "search"
+  name = "Search"
+  url = "/search/"
+  weight = 100
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+    style = "github-dark"

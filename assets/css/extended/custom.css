@@ -1,0 +1,218 @@
+/* Slightly wider content column — better for code-heavy technical posts */
+:root {
+	--main-width: 800px;
+}
+
+/* Round, right-floated profile avatar (About page) */
+.avatar {
+	float: right;
+	margin: 0 0 1rem 1.5rem;
+	max-width: 150px;
+	position: relative;
+}
+
+.avatar img {
+	border-radius: 50%;
+	box-shadow: 0 8px 24px rgba(107, 114, 128, 0.45);
+}
+
+/* Sunglasses drop onto the face on hover */
+.avatar::after {
+	content: "";
+	position: absolute;
+	top: 67px;
+	left: 53%;
+	width: 65px;
+	height: 36px;
+	transform: translateX(-66%);
+	background: url("/sunglasses.svg") no-repeat 50% / contain;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+}
+
+.avatar:hover::after {
+	opacity: 1;
+}
+
+/* Tags live in a topics strip + tag pages, not on each post */
+.post-tags {
+	display: none;
+}
+
+/* Topics bar — plain text links under the nav, aligned to the content width */
+.topics-bar {
+	max-width: calc(var(--main-width) + var(--gap) * 2);
+	margin: 6px auto 0;
+	padding: 0 var(--gap) 8px;
+}
+
+.topics {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 18px;
+}
+
+.topics a {
+	font-size: 16px;
+	color: var(--primary);
+	text-decoration: none;
+}
+
+.topics a:hover {
+	opacity: 0.65;
+}
+
+/* Sticky header: nav + topics bar pin to the top on scroll */
+.sticky-top {
+	position: sticky;
+	top: 0;
+	z-index: 30;
+	background: var(--theme);
+	border-bottom: 1px solid var(--border);
+}
+
+/* Mobile: declutter the top — no sticky, topics as one swipeable row, calmer avatar */
+@media (max-width: 768px) {
+	.sticky-top {
+		position: static;
+	}
+
+	.topics {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.topics::-webkit-scrollbar {
+		display: none;
+	}
+
+	.topics a {
+		font-size: 0.85rem;
+		white-space: nowrap;
+	}
+
+	.logo {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 14px 16px 4px;
+	}
+
+	.logo a {
+		font-size: 20px;
+		line-height: 1.2;
+		text-align: center;
+	}
+
+	.avatar {
+		float: none;
+		display: block;
+		margin: 0 auto 1rem;
+	}
+}
+
+/* Constrain the nav to the main content width — logo left, menu right */
+.header-nav {
+	max-width: calc(var(--main-width) + var(--gap) * 2);
+}
+
+.menu {
+	align-items: center;
+}
+
+.theme-toggle-li {
+	display: flex;
+	align-items: center;
+}
+
+.theme-toggle-li button {
+	background: none;
+	border: 0;
+	padding: 0 0 0 14px;
+	cursor: pointer;
+	color: var(--primary);
+}
+
+/* SVG sized to its viewBox, scaled down in CSS and baseline-aligned */
+.theme-toggle-li svg {
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+}
+
+/* Purple gradient on the homepage name and every page/post title */
+.home-info .entry-header h1,
+.page-header h1,
+.post-title {
+	background: linear-gradient(90deg, #6d28d9 0%, #9333ea 45%, #c084fc 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+	display: inline-block;
+}
+
+/* Tighten the homepage gap between the intro/social icons and the post list */
+.first-entry {
+	min-height: auto;
+	margin-bottom: var(--gap);
+}
+
+/* Related posts at the foot of each post */
+.related-posts {
+	margin-top: calc(var(--gap) * 1.5);
+	padding-top: var(--gap);
+	border-top: 1px solid var(--border);
+}
+
+.related-posts h3 {
+	margin: 0 0 10px;
+	font-size: 18px;
+}
+
+.related-posts ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.related-posts li {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1rem;
+	padding: 5px 0;
+}
+
+.related-posts a {
+	color: var(--primary);
+}
+
+.related-date {
+	color: var(--secondary);
+	font-size: 0.85rem;
+	white-space: nowrap;
+}
+
+/* GitHub / LinkedIn links in the footer */
+.footer-social {
+	display: flex;
+	justify-content: center;
+	margin: 2px 0 10px;
+}
+
+.footer-social .social-icons a {
+	padding: 6px;
+	color: var(--secondary);
+}
+
+.footer-social .social-icons a:hover {
+	color: var(--primary);
+}
+
+.footer-social .social-icons a svg {
+	height: 20px;
+	width: 20px;
+}

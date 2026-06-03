@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="4.5" x2="9" y2="4.5" stroke="#a78bfa" stroke-width="2.4"/>
+    </pattern>
+    <pattern id="zdots" width="11" height="11" patternUnits="userSpaceOnUse">
+      <circle cx="5.5" cy="5.5" r="1.7" fill="#8b5cf6"/>
+    </pattern>
+  </defs>
+
+  <!-- A: hatched upper triangle + open legs + crossbar -->
+  <polygon points="118,52 77,148 159,148" fill="url(#hatch)"/>
+  <path d="M56 198 L118 52 L180 198" fill="none" stroke="#6d28d9" stroke-width="8"/>
+  <line x1="77" y1="148" x2="159" y2="148" stroke="#6d28d9" stroke-width="8"/>
+
+  <!-- z: dotted lower triangle + strokes (base to A width, smaller top below crossbar) -->
+  <polygon points="140,158 176,196 58,196" fill="url(#zdots)"/>
+  <path d="M100 158 L140 158 L58 196 L176 196" fill="none" stroke="#c4b5fd" stroke-width="8"/>
+
+  <!-- R: wider, moved left to meet the A, more bowl dots -->
+  <g transform="translate(-20,0) rotate(-20 200 198)">
+    <line x1="200" y1="52" x2="200" y2="198" stroke="#7c3aed" stroke-width="9"/>
+    <path d="M200 52 L242 52 C272 52 272 120 200 120" fill="none" stroke="#7c3aed" stroke-width="9"/>
+    <path d="M200 120 L256 198" fill="none" stroke="#7c3aed" stroke-width="9"/>
+    <g fill="#a78bfa">
+      <circle cx="214" cy="72" r="2.3"/><circle cx="232" cy="72" r="2.3"/><circle cx="250" cy="72" r="2.3"/>
+      <circle cx="214" cy="90" r="2.3"/><circle cx="232" cy="90" r="2.3"/><circle cx="250" cy="90" r="2.3"/>
+      <circle cx="214" cy="108" r="2.3"/><circle cx="232" cy="108" r="2.3"/><circle cx="250" cy="108" r="2.3"/>
+    </g>
+  </g>
+</svg>

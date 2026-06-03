@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <filter id="ds" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#0b0b2e" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+  <ellipse cx="120" cy="58" rx="64" ry="26" stroke="#7dd3fc"/>
+  <path d="M56 58 V182 a64 26 0 0 0 128 0 V58" stroke="#c4b5fd"/>
+  <path d="M56 100 a64 26 0 0 0 128 0" stroke="#a5b4fc"/>
+  <path d="M56 141 a64 26 0 0 0 128 0" stroke="#a5b4fc"/>
+  <g filter="url(#ds)">
+    <path d="M201 150 a42 42 0 1 1 -13 -30" stroke="#f0abfc" stroke-width="7"/>
+    <path d="M188 100 l5 22 -22 -1" stroke="#f0abfc" stroke-width="7"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
+  <!-- A (single color) — right leg is the shared/angled edge -->
+  <path d="M52 186 L118 54 L150 186 M81 128 L136 128" stroke="#7c3aed"/>
+  <!-- R (single color) — stem slanted parallel to the A's right leg, touching it -->
+  <path d="M164 183 L132 51 L162 51 C188 51 190 115 147 115 L196 186" stroke="#5b21b6"/>
+  <!-- z (single color) — under the A, crossbar to baseline -->
+  <path d="M88 128 L130 128 L56 186 L128 186" stroke="#8b5cf6" stroke-width="11"/>
+</svg>
