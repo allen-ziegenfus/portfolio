@@ -8,3 +8,10 @@ hugo_stats.json
 .DS_Store
 *.swp
 *~
+
+# Node / Playwright (baselines under tests/__screenshots__/ stay committed)
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

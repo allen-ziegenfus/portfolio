@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # JS tooling (Playwright visual-regression harness)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright*"
+
+  # GitHub Actions used by the Hugo build/deploy workflow
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
