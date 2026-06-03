@@ -33,6 +33,8 @@ Corporate web platform. Migrated from on-prem VMs to a managed PaaS (AWS, then G
 
 **Independent Consultant** · *2002–2008* — C# / .NET, Postscript composition, and Oracle data migration.
 
+**Senior Software Engineer / Technical Lead / Instructor** · Active Data Corp., Baltimore · *1997–2002* — built database-driven applications (SQLWindows, C/C++, Oracle) and delivered developer training, including a five-day application-development course.
+
 ### Selected independent work
 
 - **[Vollrad Kutscher](https://werkverzeichnis.vollrad-kutscher.de/)** — artist catalog site (Astro, Tailwind, Airtable, GitHub Actions)
@@ -46,6 +48,7 @@ Corporate web platform. Migrated from on-prem VMs to a managed PaaS (AWS, then G
 - **CI/CD & operations:** GitHub Actions, Jenkins, Dynatrace, Cloudflare, Workload Identity Federation
 - **Languages:** Java, Python, JavaScript / TypeScript, Go
 - **Also:** OSGi, Elasticsearch, Okta SSO / SAML, AWS
+- **AI:** Claude Code, Gemini CLI
 - **Spoken languages:** English and German (fluent)
 
 ## Contact
