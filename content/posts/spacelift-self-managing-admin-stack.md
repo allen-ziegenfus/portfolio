@@ -1,6 +1,6 @@
 +++
 title = "The admin stack that manages itself: bootstrapping a self-hosted IaC control plane"
-date = 2026-06-02
+date = 2026-05-05
 draft = false
 summary = "If your IaC orchestrator is itself configured as code, you need an admin stack that provisions every stack — including itself. The elegant pattern, and the two bootstrap problems no amount of declarative code removes."
 tags = ["Infrastructure as Code"]

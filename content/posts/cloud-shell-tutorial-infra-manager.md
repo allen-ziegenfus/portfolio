@@ -1,6 +1,6 @@
 +++
 title = "A clone-and-go installer: GCP Cloud Shell tutorials + Infrastructure Manager"
-date = 2026-06-02
+date = 2026-03-19
 draft = false
 summary = "Turning a many-step platform install — APIs, IAM, Terraform, state, secrets — into a browser-only, guided, clone-and-go onboarding with GCP Cloud Shell tutorials and Infrastructure Manager."
 tags = ["Infrastructure as Code", "GCP"]

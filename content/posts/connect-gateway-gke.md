@@ -1,6 +1,6 @@
 +++
 title = "Use GKE Connect Gateway to protect your private control plane"
-date = 2026-05-28
+date = 2026-04-21
 draft = false
 summary = "Reach a private GKE cluster's API server without a bastion or authorized-networks — using the GKE-native Connect Gateway, with GCP IAM outside the gateway and Kubernetes RBAC inside."
 tags = ["Kubernetes", "GCP", "Security"]

@@ -1,6 +1,6 @@
 +++
 title = "Environment-stable table ownership: surviving cross-environment restore with IAM database auth"
-date = 2026-06-02
+date = 2026-05-16
 draft = false
 summary = "Cloud SQL IAM database auth breaks cross-environment restores because table ownership encodes a per-environment service account. Make ownership environment-independent by owning every table as cloudsqlsuperuser."
 tags = ["Databases", "Security", "GCP"]
