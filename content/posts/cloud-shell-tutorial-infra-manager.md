@@ -31,7 +31,7 @@ A single "Open in Cloud Shell" deep link (`cloudshell_open` with the repo URL) c
 
 ## Piece 2: A Cloud Shell Tutorial (the Runbook as a Program)
 
-Cloud Shell renders an interactive **walkthrough** from a Markdown file (`teachme tutorial.md`) — a side panel that guides the user step by step. It's just Markdown with `<walkthrough-*>` directives, versioned in the repo alongside the code. The high-value ones:
+Cloud Shell renders an interactive [**walkthrough**](https://docs.cloud.google.com/shell/docs/walkthroughs) from a Markdown file (`teachme tutorial.md`) — a side panel that guides the user step by step. It's just Markdown with `<walkthrough-*>` directives, versioned in the repo alongside the code. The high-value ones:
 
 - **`<walkthrough-project-setup billing="true">`** — a project picker that confirms a billing-enabled project is selected before anything else runs. No more "I deployed into the wrong project."
 - **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The tutorial declares the list, so the user enables exactly the right APIs in one click — no guessing, no missed API.
@@ -79,7 +79,7 @@ The walkthrough sequences the steps; any gate beyond the project-and-billing sel
 
 ## Piece 3: Infrastructure Manager Runs the Terraform, Not the User
 
-This is the part that most changes the risk profile. Instead of the user running `terraform apply` locally — with their own broad credentials, their own state file, their own tool version — the install hands the Terraform to **Infrastructure Manager** (`config.googleapis.com`), GCP's managed Terraform service. Infrastructure Manager:
+This is the part that most changes the risk profile. Instead of the user running `terraform apply` locally — with their own broad credentials, their own state file, their own tool version — the install hands the Terraform to [**Infrastructure Manager**](https://docs.cloud.google.com/infrastructure-manager/docs/overview) (`config.googleapis.com`), GCP's managed Terraform service. Infrastructure Manager:
 
 - runs the Terraform **server-side, as a dedicated runner service account** (least-privilege, not the user's `owner` credentials);
 - **manages state for you** in a Google-owned bucket, so there's no "who has the state, and is it locked?" problem;
