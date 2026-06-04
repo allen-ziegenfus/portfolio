@@ -16,7 +16,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  reporter: [['html', { open: 'never' }]],
+  // 'github' surfaces failures as inline annotations on the CI run/PR (no download);
+  // 'html' is the full actual/expected/diff report, uploaded as a CI artifact.
+  reporter: [['github'], ['html', { open: 'never' }]],
   // clean, platform-suffix-free names so the committed baselines are stable
   snapshotPathTemplate: 'tests/__screenshots__/{projectName}/{arg}{ext}',
   use: {

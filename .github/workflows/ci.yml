@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   visual:
@@ -38,6 +39,7 @@ jobs:
         run: npx playwright test
 
       - name: Upload Playwright report (diffs on failure)
+        id: report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
@@ -46,3 +48,31 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 14
+
+      - name: Comment report link on the PR
+        if: ${{ github.event_name == 'pull_request' && !cancelled() }}
+        uses: actions/github-script@v7
+        env:
+          ARTIFACT_URL: ${{ steps.report.outputs.artifact-url }}
+          JOB_STATUS: ${{ job.status }}
+        with:
+          script: |
+            const marker = '<!-- visual-report -->';
+            const status = process.env.JOB_STATUS === 'success' ? '✅ passed' : '❌ failed';
+            const body = [
+              marker,
+              `### Visual regression: ${status}`,
+              '',
+              `📊 **[Download the Playwright report](${process.env.ARTIFACT_URL})** — unzip and open \`playwright-report/index.html\` for the actual / expected / diff slider.`,
+              '',
+              `Failures (if any) also appear as inline annotations on this run.`,
+            ].join('\n');
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo, issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ ...context.repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
+            }
