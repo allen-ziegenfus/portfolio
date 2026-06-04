@@ -52,5 +52,15 @@ vale content/posts/
 ```
 
 In VS Code, install the recommended extensions (`.vscode/extensions.json`) for
-live squiggles — Vale on save, Harper as you type. CI runs Vale on PRs as an
-**advisory, non-blocking** annotation (it never gates a merge).
+live squiggles — Vale on save, Harper as you type. Harper uses the project
+dictionary `.harper-dictionary.txt` so technical terms aren't flagged. On
+**content** PRs, CI leaves Vale suggestions as inline review comments
+(advisory, non-blocking — never gates a merge).
+
+## Dead links
+
+A weekly scheduled workflow (`.github/workflows/links.yml`) builds the site and
+runs [lychee](https://lychee.cli.rs) over every page; if it finds a broken link
+it opens (or updates) a `dead-links` GitHub issue. Run it on demand from the
+Actions tab ("Dead links" → *Run workflow*). `.lycheeignore` skips known
+bot-hostile hosts (LinkedIn 999s non-browsers).

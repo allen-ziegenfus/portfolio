@@ -1,0 +1,48 @@
+name: Dead links
+
+# Scheduled link-health bot: builds the site, checks every internal/external
+# link, and opens (or updates) a GitHub issue when something breaks.
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.162.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install Hugo (extended)
+        run: |
+          wget -qO /tmp/hugo.deb \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i /tmp/hugo.deb
+
+      - name: Build site
+        run: hugo --gc --minify --baseURL "https://allenz.net/"
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-concurrency 4 "./public/**/*.html"
+          fail: false # never fail the run; the issue is the signal
+
+      - name: Open / update issue on broken links
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🔗 Dead links found"
+          content-filepath: ./lychee/out.md
+          labels: dead-links
