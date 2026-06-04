@@ -16,7 +16,7 @@ One runbook shape is a `SETUP.md` with many numbered steps. But this can lead to
 
 - Users skip the API-enablement step and hit a cryptic error twenty minutes later.
 - Users run Terraform with their personal `owner` credentials. 
-- Users keep state on their laptop which can leak sensitive information.
+- Users keep state on their laptop which can leak sensitive information or be easily deleted. 
 - Users are on the wrong tool version, leading to hard to debug errors. 
 - Users paste the wrong project ID into step 14. 
 
@@ -58,7 +58,7 @@ Infrastructure Manager needs a small, specific permission setup, which a bootstr
 - Grant that service agent the **`config.agent`** role on the project and the ability to **act as the runner service account** (`iam.serviceAccountUser`), so it can execute the Terraform *as* the scoped runner.
 - Grant the trigger (the Cloud Build service account) permission to **manage deployments** (`config.admin`) and to **impersonate the runner**.
 
-The shape is "a managed service runs your Terraform as a service account you scoped, triggered by a build, with state it owns" — which is exactly what you want when handing an install to someone who shouldn't (and shouldn't have to) hold production credentials.
+This means that a managed service runs your Terraform as a service account that you scoped, triggered by a build, with state it owns. 
 
 ## Why This Is an Effective Pattern for Distributing Infrastructure
 
