@@ -77,18 +77,35 @@ jobs:
               await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
             }
 
+  changes:
+    # Detect whether the PR touches content, so prose only runs when it's relevant.
+    runs-on: ubuntu-latest
+    outputs:
+      content: ${{ steps.filter.outputs.content }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            content:
+              - 'content/**'
+
   prose:
-    # Advisory only — not a required check (branch protection requires `visual`),
-    # and fail_on_error is false, so this informs via annotations but never blocks.
+    # Advisory only (branch protection requires `visual`), fail_on_error: false.
+    # Runs only on content PRs and leaves inline review comments on the new prose.
+    needs: changes
+    if: needs.changes.outputs.content == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Vale prose lint (advisory)
+      - name: Vale prose lint (advisory, inline comments)
         uses: errata-ai/vale-action@reviewdog
         with:
           files: content/posts
           fail_on_error: false
-          reporter: github-pr-check
+          reporter: github-pr-review
+          filter_mode: added
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

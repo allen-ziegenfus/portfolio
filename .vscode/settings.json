@@ -1,10 +1,12 @@
 {
   // Vale (style): squiggles on open/save, using the repo's .vale.ini.
-  // Requires the `vale` CLI on PATH and a one-time `vale sync`.
+  // Requires the `vale` CLI on PATH (style packages are vendored under styles/).
   "vale.valeCLI.path": "vale",
   "vale.valeCLI.config": "${workspaceFolder}/.vale.ini",
   "vale.valeCLI.minAlertLevel": "warning",
 
-  // Harper (grammar/spelling) runs via its bundled language server — no config needed.
+  // Harper (grammar/spelling): use the project dictionary so our technical terms
+  // (Kubernetes, Crossplane, ArgoCD, …) aren't flagged as misspellings.
+  "harper-ls.userDictPath": "${workspaceFolder}/.harper-dictionary.txt",
   "harper-ls.linters.SentenceCapitalization": true
 }
