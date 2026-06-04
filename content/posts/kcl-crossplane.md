@@ -1,6 +1,6 @@
 +++
 title = "When Go templates outgrow you: a typed-language alternative for Crossplane compositions"
-date = 2026-05-28
+date = 2026-05-23
 draft = false
 summary = "When Crossplane's Go-template compositions outgrow you — no types, no tests, global scope — KCL offers a typed, testable alternative. The multi-step pipeline architecture, and the bugs only end-to-end validation catches."
 tags = ["Infrastructure as Code", "Kubernetes"]

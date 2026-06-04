@@ -1,6 +1,6 @@
 +++
 title = "Why deleting an env var from your GitOps values doesn't remove it from the pod"
-date = 2026-06-02
+date = 2026-04-09
 draft = false
 summary = "You delete an env var from your Helm values, Argo CD reports Synced — and it's still on the pod. Why strategic-merge-patch can't remove list items, and the Server-Side Apply fix."
 tags = ["GitOps", "Kubernetes"]

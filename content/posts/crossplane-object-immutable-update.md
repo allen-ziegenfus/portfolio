@@ -1,6 +1,6 @@
 +++
 title = "The Crossplane Object that synced green and changed nothing"
-date = 2026-06-02
+date = 2026-04-15
 draft = false
 summary = "Everything's green — Argo CD Synced, Crossplane Ready — but the change never took effect. The trap where Crossplane management policies without Update meet Kubernetes immutability."
 tags = ["Infrastructure as Code", "Kubernetes", "GitOps"]

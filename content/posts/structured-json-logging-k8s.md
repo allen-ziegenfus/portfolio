@@ -1,6 +1,6 @@
 +++
 title = "Structured JSON logging for a legacy Java app on Kubernetes — without forking the image"
-date = 2026-06-02
+date = 2026-04-22
 draft = false
 summary = "How to retrofit machine-parseable JSON logging onto a legacy Java app on Kubernetes — both log4j2 and Tomcat's JUL — without forking the vendor image, as an opt-in, fail-open, cleanly revertible layer."
 tags = ["Observability", "Kubernetes"]

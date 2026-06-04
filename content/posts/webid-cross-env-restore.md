@@ -1,6 +1,6 @@
 +++
 title = "Stable vs. rewritten identity: cross-environment database restore in a stateful platform"
-date = 2026-06-02
+date = 2026-05-15
 draft = false
 summary = "When a platform bakes an environment-derived identity into its database on first boot, restoring across environments crash-loops on a mismatch. The fix is a product question: stabilize the identity, or rewrite it after restore?"
 tags = ["Databases", "Kubernetes"]

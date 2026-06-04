@@ -1,6 +1,6 @@
 +++
 title = "Applying Terraform from CI is a stateful problem wearing a stateless tool"
-date = 2026-06-02
+date = 2026-04-25
 draft = false
 summary = "GitHub Actions is a near-perfect stateless task runner — and a poor fit for applying Terraform, which is stateful, collaborative, and approval-gated. The practical case, from running it both ways."
 tags = ["Infrastructure as Code"]
