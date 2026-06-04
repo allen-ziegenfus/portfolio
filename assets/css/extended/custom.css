@@ -392,7 +392,7 @@ main:focus-visible {
 }
 
 /* Hover: tile scales gently in step with the card — light glow, no heavy shadow */
-.post-entry:hover .entry-icon {
+:is(.post-entry, .post-title-row):hover .entry-icon {
 	box-shadow: 0 6px 16px rgba(124, 58, 237, 0.2);
 }
 
@@ -408,7 +408,7 @@ main:focus-visible {
 	transform-origin: center;
 }
 
-.post-entry:hover .entry-icon .k8s-spin {
+:is(.post-entry, .post-title-row):hover .entry-icon .k8s-spin {
 	animation: k8s-spin 6s linear infinite;
 }
 
@@ -418,7 +418,7 @@ main:focus-visible {
 
 /* Databases — primary replicates to the replica: data flows across the link
    and the replica's bands fill in */
-.post-entry:hover .entry-icon .db-flow {
+:is(.post-entry, .post-title-row):hover .entry-icon .db-flow {
 	stroke-dasharray: 8 7;
 	animation: db-flow 0.7s linear infinite;
 }
@@ -427,8 +427,8 @@ main:focus-visible {
 	to { stroke-dashoffset: -15; }
 }
 
-.post-entry:hover .entry-icon .db-fill1 { animation: db-fill 1.6s ease-in-out infinite; }
-.post-entry:hover .entry-icon .db-fill2 { animation: db-fill 1.6s ease-in-out 0.35s infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .db-fill1 { animation: db-fill 1.6s ease-in-out infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .db-fill2 { animation: db-fill 1.6s ease-in-out 0.35s infinite; }
 
 @keyframes db-fill {
 	0%, 100% { opacity: 0.3; }
@@ -437,13 +437,13 @@ main:focus-visible {
 
 /* Infrastructure as Code — plan → apply: the arrow turns fuchsia and flows
    right, the stacks build up, and the label cycles PLAN → APPLY */
-.post-entry:hover .entry-icon .iac-shaft {
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-shaft {
 	stroke: #f0abfc;
 	stroke-dasharray: 9 7;
 	animation: iac-flow 0.7s linear infinite;
 }
 
-.post-entry:hover .entry-icon .iac-head {
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-head {
 	stroke: #f0abfc;
 }
 
@@ -451,17 +451,17 @@ main:focus-visible {
 	to { stroke-dashoffset: -16; }
 }
 
-.post-entry:hover .entry-icon .iac-l1 { animation: iac-build 1.8s ease-in-out infinite; }
-.post-entry:hover .entry-icon .iac-l2 { animation: iac-build 1.8s ease-in-out 0.25s infinite; }
-.post-entry:hover .entry-icon .iac-l3 { animation: iac-build 1.8s ease-in-out 0.5s infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-l1 { animation: iac-build 1.8s ease-in-out infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-l2 { animation: iac-build 1.8s ease-in-out 0.25s infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-l3 { animation: iac-build 1.8s ease-in-out 0.5s infinite; }
 
 @keyframes iac-build {
 	0%, 100% { opacity: 0.4; }
 	45%      { opacity: 1; }
 }
 
-.post-entry:hover .entry-icon .iac-plan { animation: iac-plan 4.4s ease-in-out infinite; }
-.post-entry:hover .entry-icon .iac-apply { animation: iac-apply 4.4s ease-in-out infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-plan { animation: iac-plan 4.4s ease-in-out infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .iac-apply { animation: iac-apply 4.4s ease-in-out infinite; }
 
 @keyframes iac-plan {
 	0%, 35%   { opacity: 1; }
@@ -476,7 +476,7 @@ main:focus-visible {
 
 /* GitOps — the repo pushes to the cluster: the link flows and the cluster
    reconciles (the wheel turns) */
-.post-entry:hover .entry-icon .gitops-flow {
+:is(.post-entry, .post-title-row):hover .entry-icon .gitops-flow {
 	stroke-dasharray: 8 7;
 	animation: gitops-flow 0.7s linear infinite;
 }
@@ -490,7 +490,7 @@ main:focus-visible {
 	transform-origin: center;
 }
 
-.post-entry:hover .entry-icon .gitops-wheel {
+:is(.post-entry, .post-title-row):hover .entry-icon .gitops-wheel {
 	animation: gitops-wheel 5s linear infinite;
 }
 
@@ -504,7 +504,7 @@ main:focus-visible {
 	transform-origin: center;
 }
 
-.post-entry:hover .entry-icon .sdlc-spin {
+:is(.post-entry, .post-title-row):hover .entry-icon .sdlc-spin {
 	animation: sdlc-spin 6s linear infinite;
 }
 
@@ -520,8 +520,8 @@ main:focus-visible {
 	transition: opacity 0.3s ease;
 }
 
-.post-entry:hover .entry-icon .db-label,
-.post-entry:hover .entry-icon .gitops-label {
+:is(.post-entry, .post-title-row):hover .entry-icon .db-label,
+:is(.post-entry, .post-title-row):hover .entry-icon .gitops-label {
 	opacity: 1;
 }
 
@@ -530,7 +530,7 @@ main:focus-visible {
 	stroke-dasharray: 100;
 }
 
-.post-entry:hover .entry-icon .obs-pulse {
+:is(.post-entry, .post-title-row):hover .entry-icon .obs-pulse {
 	animation: obs-pulse 1.9s linear infinite;
 }
 
@@ -544,7 +544,7 @@ main:focus-visible {
 	stroke-dasharray: 100;
 }
 
-.post-entry:hover .entry-icon .sec-check {
+:is(.post-entry, .post-title-row):hover .entry-icon .sec-check {
 	animation: sec-check 1.8s ease-in-out infinite;
 }
 
@@ -560,11 +560,11 @@ main:focus-visible {
 	transform-origin: center;
 }
 
-.post-entry:hover .entry-icon .gcp-up {
+:is(.post-entry, .post-title-row):hover .entry-icon .gcp-up {
 	animation: gcp-up 1.4s ease-in-out infinite;
 }
 
-.post-entry:hover .entry-icon .gcp-down {
+:is(.post-entry, .post-title-row):hover .entry-icon .gcp-down {
 	animation: gcp-down 1.4s ease-in-out infinite;
 }
 
@@ -586,10 +586,10 @@ main:focus-visible {
 	stroke-dasharray: 100;
 }
 
-.post-entry:hover .entry-icon .poem-quill { animation: poem-quill-move 3.6s ease-in-out infinite; }
-.post-entry:hover .entry-icon .poem-l1 { animation: poem-l1 3.6s linear infinite; }
-.post-entry:hover .entry-icon .poem-l2 { animation: poem-l2 3.6s linear infinite; }
-.post-entry:hover .entry-icon .poem-l3 { animation: poem-l3 3.6s linear infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .poem-quill { animation: poem-quill-move 3.6s ease-in-out infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .poem-l1 { animation: poem-l1 3.6s linear infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .poem-l2 { animation: poem-l2 3.6s linear infinite; }
+:is(.post-entry, .post-title-row):hover .entry-icon .poem-l3 { animation: poem-l3 3.6s linear infinite; }
 
 @keyframes poem-quill-move {
 	0%        { transform: translate(0, 0); }
