@@ -233,6 +233,13 @@ main:focus-visible {
 		mask-image: linear-gradient(to right, #000 88%, transparent);
 	}
 
+	/* scrolled to the end (or nothing to scroll) → drop the fade so the last tag
+	   isn't dimmed as if there were more. JS toggles .at-end. */
+	.topics.at-end {
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+
 	.topics::-webkit-scrollbar {
 		display: none;
 	}
