@@ -76,3 +76,19 @@ jobs:
             } else {
               await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
             }
+
+  prose:
+    # Advisory only — not a required check (branch protection requires `visual`),
+    # and fail_on_error is false, so this informs via annotations but never blocks.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Vale prose lint (advisory)
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          files: content/posts
+          fail_on_error: false
+          reporter: github-pr-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

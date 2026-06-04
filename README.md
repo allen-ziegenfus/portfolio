@@ -40,3 +40,17 @@ Every pull request runs the suite in CI (`.github/workflows/ci.yml`) inside the
 same Playwright container the baselines are generated in, so renders match and
 diffs reflect real visual changes rather than cross-OS font noise. The HTML
 report (actual / expected / diff images) is uploaded as a build artifact.
+
+## Prose linting
+
+[Vale](https://vale.sh) (style) and [Harper](https://writewithharper.com)
+(grammar) lint the writing. Vale's style packages are vendored under `styles/`
+(so no `vale sync` is needed); config is `.vale.ini`:
+
+```bash
+vale content/posts/
+```
+
+In VS Code, install the recommended extensions (`.vscode/extensions.json`) for
+live squiggles — Vale on save, Harper as you type. CI runs Vale on PRs as an
+**advisory, non-blocking** annotation (it never gates a merge).
