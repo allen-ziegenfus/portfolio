@@ -67,7 +67,7 @@ The Argo CD config then references those secrets by name. In a Terraform/GitOps 
 
 ## Portable lessons
 
-- **Prefer GitHub App installation tokens over PATs for machine access.** Short-lived, fine-grained, org-owned, churn-proof, higher limits. There is almost no case where a long-lived PAT in a cluster is the right answer.
+- **Prefer GitHub App installation tokens over PATs for machine access.** Short-lived, fine-grained, org-owned, churn-proof, higher limits. For modern GitHub-based GitOps, a long-lived PAT in a cluster is rarely the right answer — the exceptions are legacy tooling, air-gapped environments, or integrations without App support.
 - **Separate machine identity from human identity in your head**, even when one App hosts both. Installation tokens are for servers; OAuth tokens are for people. Most integration bugs are a category error between the two.
 - **Turn polling into events.** Webhooks are a small amount of config that converts GitOps from "eventually" to "immediately," and the App you already created for repo access can carry them.
 - **Govern human access through an identity you already manage.** Org/team → RBAC means access control is a side effect of org membership, not a second system to keep in sync.

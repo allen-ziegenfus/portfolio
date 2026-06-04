@@ -100,7 +100,7 @@ This means that a managed service runs your Terraform as a service account that 
 
 ## Why This Is an Effective Pattern for Distributing Infrastructure
 
-- **Zero local setup.** Browser only. No SDK, no Terraform, no auth dance. The support surface for "my environment" goes to zero.
+- **Zero local setup.** Browser only. No SDK, no Terraform, no auth dance. The "my environment" support surface all but disappears.
 - **No credentials on the laptop.** The user authenticates to Cloud Shell with their Google identity; the *apply* runs as a least-privilege runner SA inside GCP. No `owner` PAT, no exported service-account key.
 - **Project and APIs are handled up front.** The `project-setup` step requires a billing-enabled project, and a one-click step enables the exact APIs the build needs — so the most common silent failures are prevented.
 - **State and tool version are managed.** Infrastructure Manager owns both, so two different operators get identical, reproducible runs.
