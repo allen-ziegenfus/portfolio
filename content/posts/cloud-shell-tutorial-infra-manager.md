@@ -35,7 +35,7 @@ Cloud Shell renders an interactive **walkthrough** from a Markdown file (`teachm
 
 - **`<walkthrough-project-setup billing="true">`** — a project picker that confirms a billing-enabled project is selected before anything else runs. No more "I deployed into the wrong project."
 - **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The tutorial declares the list, so the user enables exactly the right APIs in one click — no guessing, no missed API.
-- **`<walkthrough-editor-open-file>`** — opens a specific file (e.g. the Terraform variables) in the Cloud Shell editor at the right moment, so the user edits the real file in place rather than being told to "go find and edit X."
+- **`<walkthrough-editor-open-file>`** — opens a specific file (e.g. the Terraform variables) in the Cloud Shell editor at the right moment, so the user edits the real file in place rather than having to "go find and edit X."
 - **Inline runnable commands** — fenced shell blocks the user runs with one click, with the selected project ID interpolated in (`<walkthrough-project-id/>`), so there's no copy-paste-the-wrong-value step.
 
 A slice of the `tutorial.md` reads like this:
