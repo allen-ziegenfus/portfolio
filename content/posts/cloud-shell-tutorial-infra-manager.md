@@ -34,7 +34,7 @@ A single "Open in Cloud Shell" deep link (`cloudshell_open` with the repo URL) c
 Cloud Shell renders an interactive **walkthrough** from a Markdown file (`teachme tutorial.md`) — a side panel that guides the user step by step. It's just Markdown with `<walkthrough-*>` directives, versioned in the repo alongside the code. The high-value ones:
 
 - **`<walkthrough-project-setup billing="true">`** — a project picker that confirms a billing-enabled project is selected before anything else runs. No more "I deployed into the wrong project."
-- **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The list is declared in the tutorial, so the user enables exactly the right APIs in one click — no guessing, no missed API.
+- **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The tutorial declares the list, so the user enables exactly the right APIs in one click — no guessing, no missed API.
 - **`<walkthrough-editor-open-file>`** — opens a specific file (e.g. the Terraform variables) in the Cloud Shell editor at the right moment, so the user edits the real file in place rather than being told to "go find and edit X."
 - **Inline runnable commands** — fenced shell blocks the user runs with one click, with the selected project ID interpolated in (`<walkthrough-project-id/>`), so there's no copy-paste-the-wrong-value step.
 
@@ -75,7 +75,7 @@ read -rp "Region [us-central1]: " REGION
 REGION="${REGION:-us-central1}"
 ```
 
-So the walkthrough sequences the steps and hands off; any gate beyond project-and-billing selection is only as strong as the checks you write into the scripts.
+The walkthrough sequences the steps; any gate beyond the project-and-billing selection is only as strong as the checks you write into the scripts it runs.
 
 ## Piece 3: Infrastructure Manager Runs the Terraform, Not the User
 
