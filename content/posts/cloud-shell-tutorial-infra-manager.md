@@ -5,6 +5,7 @@ draft = false
 summary = "Turning a many-step platform install — APIs, IAM, Terraform, state, secrets — into a browser-only, guided, clone-and-go onboarding with GCP Cloud Shell tutorials and Infrastructure Manager."
 tags = ["Infrastructure as Code", "GCP"]
 images = ["/og/cloud-shell-tutorial-infra-manager.png"]
+reviewed = 2026-06-04
 +++
 
 
@@ -33,11 +34,48 @@ A single "Open in Cloud Shell" deep link (`cloudshell_open` with the repo URL) c
 Cloud Shell renders an interactive **walkthrough** from a Markdown file (`teachme tutorial.md`) — a side panel that guides the user step by step. It's just Markdown with `<walkthrough-*>` directives, versioned in the repo alongside the code. The high-value ones:
 
 - **`<walkthrough-project-setup billing="true">`** — a project picker that confirms a billing-enabled project is selected before anything else runs. No more "I deployed into the wrong project."
-- **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The user *cannot* skip it or get the list wrong; it's declared in the tutorial.
-- **`<walkthrough-editor-open-file>`** — opens a specific file (e.g. the Terraform variables) in the Cloud Shell editor at the right moment.
+- **`<walkthrough-enable-apis apis="...">`** — a one-click button that enables the exact list of required APIs. The list is declared in the tutorial, so the user enables exactly the right APIs in one click — no guessing, no missed API.
+- **`<walkthrough-editor-open-file>`** — opens a specific file (e.g. the Terraform variables) in the Cloud Shell editor at the right moment, so the user edits the real file in place rather than being told to "go find and edit X."
 - **Inline runnable commands** — fenced shell blocks the user runs with one click, with the selected project ID interpolated in (`<walkthrough-project-id/>`), so there's no copy-paste-the-wrong-value step.
 
-The difference from a README is that the walkthrough is *stateful and verifying*. It knows which project is selected, it injects that into every command, it gates progress on prerequisites. The procedure can't drift from the documentation because the procedure *is* the documentation, executing.
+A slice of the `tutorial.md` reads like this:
+
+````markdown
+## Select project
+<walkthrough-project-setup billing="true" required="true"></walkthrough-project-setup>
+
+```sh
+gcloud config set project <walkthrough-project-id/>
+```
+
+## Enable APIs
+<walkthrough-enable-apis apis="config.googleapis.com,cloudbuild.googleapis.com,compute.googleapis.com,container.googleapis.com,iam.googleapis.com"></walkthrough-enable-apis>
+
+## Configure and apply
+<walkthrough-editor-open-file filePath="./setup.sh">Open setup.sh</walkthrough-editor-open-file>
+
+```sh
+./setup.sh <walkthrough-project-id/>
+```
+````
+
+The difference from a README is that the walkthrough is *stateful and active*, not just text. It knows which project is selected and injects that into every command, and the `project-setup` step won't continue until a billing-enabled project is chosen. The procedure can't drift from the documentation because the procedure *is* the documentation, executing.
+
+What the built-in directives don't cover, the scripts those steps run can. `setup.sh` is an ordinary shell script, so it can prompt for input and run its own checks — and that's where real verification lives:
+
+```sh
+# the walkthrough sequences steps; a script is what actually verifies state
+if [ "$(gcloud billing projects describe "$PROJECT" \
+      --format='value(billingEnabled)')" != "True" ]; then
+  echo "Enable billing on $PROJECT, then re-run." >&2
+  exit 1
+fi
+
+read -rp "Region [us-central1]: " REGION
+REGION="${REGION:-us-central1}"
+```
+
+So the walkthrough sequences the steps and hands off; any gate beyond project-and-billing selection is only as strong as the checks you write into the scripts.
 
 ## Piece 3: Infrastructure Manager Runs the Terraform, Not the User
 
@@ -64,7 +102,7 @@ This means that a managed service runs your Terraform as a service account that 
 
 - **Zero local setup.** Browser only. No SDK, no Terraform, no auth dance. The support surface for "my environment" goes to zero.
 - **No credentials on the laptop.** The user authenticates to Cloud Shell with their Google identity; the *apply* runs as a least-privilege runner SA inside GCP. No `owner` PAT, no exported service-account key.
-- **APIs and project are checked up front.** The walkthrough verifies billing, project, and API enablement before the build — the most common silent failures, headed off structurally.
+- **Project and APIs are handled up front.** The `project-setup` step requires a billing-enabled project, and a one-click step enables the exact APIs the build needs — so the most common silent failures are headed off in-flow rather than assumed.
 - **State and tool version are managed.** Infrastructure Manager owns both, so two different operators get identical, reproducible runs.
 - **Reproducible, not click-ops.** The tutorial and the Terraform are versioned together; an install is a known revision of a repo, not a person's memory of a Slack thread.
 
