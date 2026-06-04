@@ -63,6 +63,12 @@
 .footnote-ref {
 	margin-left: 0.45em;
 	font-weight: 600;
+	color: var(--brand-violet);
+}
+
+/* the ↩ return link in the footnote list, same accent */
+.footnote-backref {
+	color: var(--brand-violet);
 }
 
 .footnote-ref::before { content: "["; }
@@ -100,6 +106,7 @@
 
 .toc .inner {
 	margin: 0;
+	font-size: 1rem;
 }
 
 /* No hanging bullets — links left-align with the "Contents" title */
@@ -113,9 +120,22 @@
 	margin: 0.18rem 0;
 }
 
+/* small brand-blue marker for visual structure (cleaner than the old hanging bullet) */
+.toc .inner li::before {
+	content: "›";
+	color: var(--brand-sky);
+	font-weight: 700;
+	margin-right: 0.5em;
+}
+
 /* nested headings indent under their parent */
 .toc .inner li ul {
 	padding-inline-start: 1.2rem;
+}
+
+/* color the article's list bullets/numbers to match the ToC marker (text stays default) */
+.post-content li::marker {
+	color: var(--brand-sky);
 }
 
 .footnotes {
