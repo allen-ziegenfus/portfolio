@@ -125,6 +125,12 @@
 	font-size: 0.9em;
 }
 
+/* Goldmark renders its own <hr> inside .footnotes; we already draw the
+   border-top separator, so hide the duplicate line. */
+.footnotes hr {
+	display: none;
+}
+
 .footnotes li {
 	margin-bottom: 0.6em;
 }
