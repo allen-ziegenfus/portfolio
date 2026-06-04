@@ -1,3 +1,18 @@
 <div class="footer-social">
     {{- partial "social_icons.html" (dict "align" "center") }}
 </div>
+
+<script>
+  // Mobile topics bar: drop the right-edge fade once scrolled to the end (or when
+  // there's nothing to scroll), so the last tag isn't dimmed as if there were more.
+  (function () {
+    var t = document.querySelector('.topics');
+    if (!t) return;
+    function update() {
+      t.classList.toggle('at-end', t.scrollLeft + t.clientWidth >= t.scrollWidth - 1);
+    }
+    update();
+    t.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  })();
+</script>
