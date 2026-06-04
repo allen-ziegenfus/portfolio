@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const BASE = 'http://127.0.0.1:1314';
+// `hugo` on PATH by default (CI / Docker); override locally with HUGO_BIN if needed.
+const HUGO = process.env.HUGO_BIN || 'hugo';
 
 // Visual-regression baselines for allenz.net.
 //   npm run test:visual          -> compare current render against committed baselines
@@ -36,7 +38,7 @@ export default defineConfig({
   ],
   webServer: {
     // build-quality render without live-reload's injected script / open socket
-    command: '/home/allenz/go/bin/hugo server --port 1314 --bind 127.0.0.1 --disableFastRender --disableLiveReload',
+    command: `${HUGO} server --port 1314 --bind 127.0.0.1 --disableFastRender --disableLiveReload`,
     url: BASE,
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
