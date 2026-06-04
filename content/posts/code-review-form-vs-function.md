@@ -1,5 +1,6 @@
 +++
-title = "What code review is actually for"
+title = "What is code review actually for?"
+slug = "what-code-review-is-actually-for"
 date = 2026-06-03
 draft = false
 summary = "The mandatory, blocking PR gate is barely fifteen years old — and the research says review's value diverges from its justification. What code review is actually for, and why most of its jobs are better served elsewhere."
@@ -20,13 +21,13 @@ Early in my career, at a government contractor, "code review" meant something el
 
 The thing we now treat as mandatory — a lightweight, asynchronous, *blocking* pull-request gate on **every** change — is a product of the GitHub-PR era, barely fifteen years old. It's one form among several, and we adopted it near-universally in a fraction of the time it took to understand it.
 
-## What the research actually says
+## What the Research Actually Says
 
-The most-cited empirical study of modern code review — Bacchelli and Bird's *Expectations, Outcomes, and Challenges of Modern Code Review* (Microsoft Research, 2013)[^bacchelli] — found a telling gap: the thing developers most *expect* from review (finding defects) is **not** its main *outcome*. The dominant realized value is knowledge transfer, shared awareness of the codebase, and incremental improvement. Defect-finding happens, but it's modest, and under time pressure most review is shallow.
+The most-cited empirical study of modern code review — Bacchelli and Bird's *Expectations, Outcomes, and Challenges of Modern Code Review* (Microsoft Research, 2013)[^bacchelli] — found a telling gap: the thing developers most *expect* from review (finding defects) is **not** its main *outcome*. The dominant realized value is knowledge transfer, shared awareness of the codebase, and incremental improvement. Review still finds defects — just fewer, and on lower-severity issues, than the bug-hunting framing assumes — and under time pressure much of it stays shallow.
 
 That's a sharper claim than "review doesn't work." It's that **review's value diverges from its justification.** We sell it as a quality gate; it pays out mostly as a communication mechanism. Knowledge transfer is genuinely valuable — but it means we're often optimizing the ritual for the wrong thing.
 
-## Form without function
+## Form Without Function
 
 When review is run as a *gate*, the rational incentive for everyone involved is to clear the gate — and the cheapest, most legible way to demonstrate that review *happened* is to comment on what's easiest to see: formatting, naming, brace placement, sort order. Style.
 
@@ -50,13 +51,15 @@ Discovery compounds it: how does a teammate even *know* which PRs need their eye
 
 Two of review's load-bearing benefits are shifting under it. The first is *"you learn the codebase by reading other people's changes"* — a real benefit that erodes when comprehension is cheap on demand and a model can explain any file in seconds. The second is bigger: as more code is machine-generated, review's job quietly changes from *onboarding a human author* to *verifying machine output* — a different activity, with different failure modes, that the human-to-human PR gate was never designed for.
 
+This second shift is a projection, not a finding. It's early, the evidence isn't in, and I could be wrong about the pace — treat it as a hypothesis to watch, not a settled claim.
+
 ## Match the mechanism to the purpose
 
 None of this argues for shipping unreviewed code. It argues for being honest about what you want from review and routing each goal to the mechanism that actually delivers it:
 
-- **Want to catch defects?** Invest where defects are actually caught: tests, types, static analysis, property-based checks, design review *before* code is written, and production observability once it's running — which reports what's *actually* broken instead of what a reviewer imagines might be.
+- **Want to catch the mechanical defects?** Invest where those are actually caught: tests, types, static analysis, property-based checks, design review *before* code is written, and production observability once it's running — which reports what's *actually* broken instead of what a reviewer imagines might be.
 - **Want knowledge transfer?** Optimize for understanding, not gatekeeping: pairing, walkthroughs, review-for-comprehension. Don't dress communication up as a quality control it isn't.
-- **Want human judgment?** Reserve human review for what only a human catches: does this solve the right problem, does it fit the system, is this the design we actually want? That's the highest-value thing review can do — and it's exactly what gets crowded out when the same review is also expected to police whitespace.
+- **Want human judgment?** Reserve human review for what only a human catches: does this solve the right problem, does it fit the system, is the design sound — plus the security holes, broken assumptions, and logic errors no test was written to check. That's the highest-value thing review can do — and it's exactly what gets crowded out when the same review is also expected to police whitespace.
 
 And notice how little is left for the gate. The jobs review is most often *used* for — consistency and alignment — are exactly the ones other mechanisms do better. Style belongs to **linters**, run on save or in CI: instant, deterministic, never political. Team conventions belong in **shared, distributed tooling** — a common formatter config, and increasingly a shared set of AI rules and skills every engineer runs locally — so alignment is baked into everyone's environment *before* code is written, not policed after the fact by whoever happens to review. Knowledge transfer is **pairing's** native job: the same understanding plus a real review, in real time, with none of the gate's async lag. Subtract all of that, and what's left for a human reviewer is small and genuinely valuable — the design judgment only a person brings — which is precisely what the all-purpose gate crowds out.
 
@@ -124,5 +127,5 @@ You touch it: rigid, mute, a frozen thing.
 You kill each optimization that I'd planned.
 
 [^fagan]: Michael E. Fagan, "Design and Code Inspections to Reduce Errors in Program Development," *IBM Systems Journal* 15, no. 3 (1976) — the origin of formal software inspection.
-[^bacchelli]: Alberto Bacchelli and Christian Bird, "Expectations, Outcomes, and Challenges of Modern Code Review," *Proceedings of ICSE 2013* (Microsoft Research). [Paper](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/)
+[^bacchelli]: Alberto Bacchelli and Christian Bird, "Expectations, Outcomes, and Challenges of Modern Code Review," *Proceedings of ICSE 2013* (Microsoft Research). [Publication page](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/) · [PDF](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/ICSE202013-codereview.pdf)
 [^dora]: **DORA** (DevOps Research and Assessment) is a multi-year research program into software-delivery performance; its findings are synthesized in *Accelerate* (Nicole Forsgren, Jez Humble, Gene Kim, 2018) and the annual *State of DevOps* reports. [dora.dev](https://dora.dev/)

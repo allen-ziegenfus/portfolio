@@ -1,5 +1,6 @@
 +++
-title = "Retrospectives are double-loop learning"
+title = "Retrospectives: an opportunity for double-loop learning"
+slug = "retrospectives-are-double-loop-learning"
 date = 2026-06-03
 draft = false
 summary = "Most of a team's week is single-loop — execute the process, close the ticket. The retrospective is the one ritual that questions the process itself, and what quietly breaks when a team skips it."
@@ -12,6 +13,8 @@ There are two kinds of learning a team can do. The first fixes the error: the bu
 Most of a team's week is single-loop by design. Tickets, PRs, deploys — execute the process, close the loop, repeat. That's correct; you can't double-loop everything or you'd never ship. But a team that *only* single-loops has no mechanism to improve the system it runs on. It gets very good at moving tickets through a pipeline it never steps back to question.
 
 The retrospective is that mechanism. It's the one ritual whose entire job is double-loop: not "did we finish the work" but "is the way we work the way we should work?" Strip away the cadence and the sticky notes and that's what a retro *is* — a team's standing forum for examining its own rules.
+
+Other rituals do double-loop work in their own lanes — a postmortem interrogates an incident, an architecture review or RFC interrogates a design. The retro is the *general* one: the team's standing place to question how it works week to week, not only when something breaks or a big decision is on the table. On a small team it's often the only such forum; in a larger org it's one of several, and the others don't make it redundant.
 
 ## What happens when there isn't one
 
