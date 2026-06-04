@@ -108,9 +108,9 @@ This means that a managed service runs your Terraform as a service account that 
 
 ## Where this fits (and where it doesn't)
 
-This is a **day-0** pattern — onboarding, trials, demos, the first install of a self-hostable stack. Against what it usually replaces — a `SETUP.md` and a pile of bash scripts the user runs on their own laptop — it's a strict upgrade: no local toolchain, no personal credentials on the apply, managed state, no version drift.
+This is a **day-0** pattern — onboarding, trials, demos, the first install of a self-hostable stack. Against what it replaces — a `SETUP.md` and a pile of bash scripts the user runs on their own laptop — it's a strict upgrade: no local toolchain, no personal credentials on the apply, managed state, no version drift.
 
-It is **not** a day-2 management story. The install is one-shot. Infrastructure Manager can update a deployment, but there's no reconciliation loop, no drift detection, no pull-request change flow. Once the stack is something a team runs in production — upgraded, drifting, owned by more than one person — you've outgrown the guided installer, and the rest of the landscape takes over:
+It's **not** a day-2 management story. The install is one-shot. Infrastructure Manager can update a deployment, but there's no reconciliation loop, no drift detection, no pull-request change flow. Once the stack is something a team runs in production — upgraded, drifting, owned by more than one person — you've outgrown the guided installer, and the rest of the landscape takes over:
 
 - **Terraform modules** distribute the building blocks, but assume the consumer already has state, credentials, a runner, and a pipeline — the setup this pattern removes. Good for teams that already run Terraform; no help for onboarding.
 - **GitOps with a Terraform controller** (Flux's OpenTofu controller, or Argo CD) reconciles infrastructure from Git continuously, the way Flux and Argo reconcile apps. It's the real day-2 answer — drift correction, PR-based change — but it needs a cluster to run in, so it can't bootstrap the cluster it lives in.
@@ -118,7 +118,7 @@ It is **not** a day-2 management story. The install is one-shot. Infrastructure 
 - **Infrastructure as an API** (Crossplane) turns infrastructure into Kubernetes resources a consumer claims and a control plane reconciles. Strong for a platform team, heavy for a one-off install.
 - **A Marketplace listing** productizes the same one-click idea with discovery and billing attached — closer to *selling* the install than onboarding to it.
 
-So this isn't competing with GitOps or Spacelift; it's the **on-ramp before** them. Get someone from a link to a running stack in the browser, then hand that stack to whatever manages the rest of your infrastructure.
+This isn't competing with GitOps or Spacelift; it's the **on-ramp before** them. Get someone from a link to a running stack in the browser, then hand that stack to whatever manages the rest of your infrastructure.
 
 ## Portable Lessons
 
