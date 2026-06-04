@@ -44,10 +44,10 @@ report (actual / expected / diff images) is uploaded as a build artifact.
 ## Prose linting
 
 [Vale](https://vale.sh) (style) and [Harper](https://writewithharper.com)
-(grammar) lint the writing. Vale's config is `.vale.ini`:
+(grammar) lint the writing. Vale's style packages are vendored under `styles/`
+(so no `vale sync` is needed); config is `.vale.ini`:
 
 ```bash
-vale sync            # one-time: fetch the style packages
 vale content/posts/
 ```
 
