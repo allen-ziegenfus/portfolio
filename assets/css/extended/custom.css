@@ -147,7 +147,7 @@ main:focus-visible {
 	margin: 0 0 1rem 1.5rem;
 	width: 150px;
 	height: 150px;
-	border-radius: 18px;
+	border-radius: 50%;
 	overflow: hidden;
 	/* negative spread keeps the shadow below the tile, not bleeding up the sides/top */
 	box-shadow: 0 10px 16px -8px rgba(107, 114, 128, 0.55);
@@ -158,6 +158,7 @@ main:focus-visible {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	transform: scale(1.25);
 }
 
 /* Tags live in a topics strip + tag pages, not on each post */
