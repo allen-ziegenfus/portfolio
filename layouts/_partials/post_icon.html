@@ -1,7 +1,16 @@
-{{- /* Category icon for a post, keyed off its first tag. */ -}}
-{{- with .Params.tags }}
-{{- $key := (index . 0) | urlize }}
+{{- /* Category icon for a post, keyed off its first tag. On single posts (link=true) it's
+       a link to the tag page — giving the icon a purpose and the hover animation a natural
+       target; in lists it stays decorative (the card itself is already the link). */ -}}
+{{- $page := .page }}
+{{- $link := .link }}
+{{- with $page.Params.tags }}
+{{- $tag := index . 0 }}
+{{- $key := $tag | urlize }}
 {{- with (resources.Get (printf "icons/%s.svg" $key)) }}
+{{- if $link }}
+<a class="entry-icon" href="{{ printf "/tags/%s/" $key | relURL }}" aria-label="Posts tagged {{ $tag }}" title="Posts tagged {{ $tag }}">{{ .Content | safeHTML }}</a>
+{{- else }}
 <span class="entry-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+{{- end }}
 {{- end }}
 {{- end }}

@@ -8,15 +8,15 @@ tags = ["SDLC"]
 images = ["/og/retrospectives-double-loop.png"]
 +++
 
-There are two kinds of learning a team can do. The first fixes the error: the build broke, so you fix the build. The second fixes the thing that *produced* the error: the build broke because of how we work, so we change how we work. Chris Argyris named these **single-loop** and **double-loop** learning[^argyris] — adjusting your actions within the existing rules, versus questioning the rules themselves.
+A team can engage in two kinds of learning. The first fixes the error: the build broke, so you fix the build. The second fixes the thing that *produced* the error: the build broke because of how we work, so we change how we work. Chris Argyris named these **single-loop** and **double-loop** learning[^argyris] — adjusting your actions within the existing rules, versus questioning the rules themselves.
 
-Most of a team's week is single-loop by design. Tickets, PRs, deploys — execute the process, close the loop, repeat. That's correct; you can't double-loop everything or you'd never ship. But a team that *only* single-loops has no mechanism to improve the system it runs on. It gets very good at moving tickets through a pipeline it never steps back to question.
+Most of a team's week is single-loop by design. Tickets, PRs, deploys — execute the process, close the loop, repeat. That's correct; you can't double-loop everything or you'd never ship. But a team that *only* single-loops has no mechanism to improve the system it runs on. It excels at moving tickets through a pipeline it never steps back to question.
 
 The retrospective is that mechanism. It's the one ritual whose entire job is double-loop: not "did we finish the work" but "is the way we work the way we should work?" Strip away the cadence and the sticky notes and that's what a retro *is* — a team's standing forum for examining its own rules.
 
 Other rituals do double-loop work in their own lanes — a postmortem interrogates an incident, an architecture review or RFC interrogates a design. The retro is the *general* one: the team's standing place to question how it works week to week, not only when something breaks or a big decision is on the table. On a small team it's often the only such forum; in a larger org it's one of several, and the others don't make it redundant.
 
-## What happens when there isn't one
+## What Happens When There Isn't One
 
 Skip it, and three things happen.
 
@@ -26,13 +26,21 @@ Second — and teams underrate this — **the double-loop observations don't dis
 
 Third, the negativity has to land *somewhere*. Acknowledging that a process is broken is unpleasant work, and with no designated forum to do it in, the observations leak out — blurted at standup, dropped into a PR thread, raised in the wrong meeting at the wrong moment. Everyone in the room may privately agree, but the timing and framing land badly, and there's no shared container to process the discomfort together. So the cost falls on the messenger: **the people most sensitive to the problems become *associated* with the problems.** A team without a retro doesn't just fail to fix its process — it quietly converts its most perceptive members into "the negative ones," and learns to discount exactly the signal it should be amplifying.
 
-## It's not only about fixing things
+## It's Not Only About Fixing Things
 
 Frame a retro purely as problem-intake and you miss half its value. A good retrospective is also where a team builds **energy and cohesion** — and those aren't soft extras, they're what makes the work sustainable.
 
 A team that only moves tickets experiences work as an endless, undifferentiated churn: finish one, the next appears, forever. Nothing is ever *marked*. A retro punctuates that churn. We name the problems **and commit to solutions** — so friction feels like something the team acts on, not weather it endures. We name the wins **and actually celebrate them** — so progress is visible and shared, not silently absorbed into the backlog. That rhythm of *see clearly, decide together, mark the moment* is most of what turns a group of people executing tickets into a team.
 
-## Why most retros fail anyway
+## Double-Loop Runs Both Directions
+
+So far this points the loop *outward* — at the process. But Argyris aimed it inward just as much: his subject was individuals confronting their own reasoning, the defensive routines that keep capable people from seeing their part in a problem. A retro does both.
+
+Outward, a surfaced complaint can change the process. Inward, the act of surfacing it — and the 1:1 conversations it spurs — turns the loop on ourselves: *what did I contribute to this, and how do we work together better?* The same friction that exposes a broken handoff also exposes two people who keep talking past each other. One gets fixed by changing the system; the other by changing how we show up in it.
+
+This is why a complaint isn't wasted even when the process doesn't move — the reflective act compounds in both directions, toward a better process *and* a team that understands itself a little better. The failure to avoid is doing only the inward half: turning every structural complaint into a personal-growth note while the system never changes. Both directions, or it curdles into the thing where naming a real problem is reframed as your attitude problem.
+
+## How Retros Can Go Awry
 
 The failure mode isn't *not having* retros — it's having ones that produce nothing. A retrospective that surfaces concerns and then changes nothing can be worse than none: it actively *trains* the team that naming problems is pointless, which is how you get the silent, going-through-the-motions version. What separates the real thing from the theater:
 

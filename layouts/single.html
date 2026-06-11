@@ -4,7 +4,7 @@
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
     <div class="post-title-row">
-    {{- partial "post_icon.html" . }}
+    {{- partial "post_icon.html" (dict "page" . "link" true) }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
@@ -17,6 +17,13 @@
       {{- end }}
     </h1>
     </div>
+    {{- with .GetTerms "tags" }}
+    <ul class="entry-tags">
+      {{- range . }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
     {{- if .Description }}
     <div class="post-description">
       {{ .Description }}

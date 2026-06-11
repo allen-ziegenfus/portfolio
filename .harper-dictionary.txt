@@ -83,3 +83,9 @@ runbook
 enablement
 markdown
 GCP's
+stringly
+XR
+CNCF
+v2
+CR
+OCI

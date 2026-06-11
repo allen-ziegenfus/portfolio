@@ -401,6 +401,9 @@ main:focus-visible {
 	display: grid;
 	place-items: center;
 	box-shadow: 0 0 0 1px var(--icon-edge), 0 5px 16px var(--icon-shadow);
+	/* on a single post the icon is a link to its tag page; keep it looking like a tile */
+	color: inherit;
+	text-decoration: none;
 	/* match the card's own hover transition so they move together */
 	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -408,6 +411,20 @@ main:focus-visible {
 .entry-icon svg {
 	width: 88px;
 	height: 88px;
+}
+
+/* Respect prefers-reduced-motion: drop the looping animations and the hover scale */
+@media (prefers-reduced-motion: reduce) {
+	.entry-icon,
+	.entry-icon * {
+		animation: none !important;
+		transition: none !important;
+	}
+
+	:is(.post-entry, .post-title-row):hover .entry-icon,
+	.entry-icon:focus-visible {
+		transform: none;
+	}
 }
 
 /* Single-post: icon beside the title (like the cards), not orphaned above it */
@@ -425,9 +442,54 @@ main:focus-visible {
 	margin: 0;
 }
 
-/* Hover: tile scales gently in step with the card — light glow, no heavy shadow */
-:is(.post-entry, .post-title-row):hover .entry-icon {
+/* Tag pills on list/home cards — under the title (general → specific), lifted above
+   the card's overlay link so they stay clickable */
+.entry-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 8px 0 14px;
+	padding: 0;
+	list-style: none;
+}
+
+.entry-tags li {
+	display: inline-block;
+}
+
+.entry-tags a {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	padding: 2px 11px;
+	border-radius: var(--radius);
+	background: var(--code-bg);
+	border: 1px solid var(--border);
+	color: var(--secondary);
+	font-size: 13px;
+	line-height: 28px;
+	text-decoration: none;
+}
+
+.entry-tags a:hover {
+	background: var(--border);
+}
+
+.post-tags .tag-ico {
+	display: inline-flex;
+}
+
+.post-tags .tag-ico svg {
+	width: 18px;
+	height: 18px;
+	display: block;
+}
+
+/* Hover/focus: tile lifts gently — light glow, plus a touch of scale as a link affordance */
+:is(.post-entry, .post-title-row):hover .entry-icon,
+.entry-icon:focus-visible {
 	box-shadow: 0 6px 16px rgba(124, 58, 237, 0.2);
+	transform: scale(1.04);
 }
 
 /* State labels are hidden until hover */
