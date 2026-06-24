@@ -19,7 +19,7 @@ jobs:
       HUGO_VERSION: 0.162.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -83,7 +83,7 @@ jobs:
     outputs:
       content: ${{ steps.filter.outputs.content }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: dorny/paths-filter@v3
         id: filter
         with:
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Vale prose lint (advisory, inline comments)
         uses: errata-ai/vale-action@reviewdog
         with:
